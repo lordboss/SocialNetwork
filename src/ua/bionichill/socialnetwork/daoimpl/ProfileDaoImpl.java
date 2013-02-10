@@ -23,87 +23,86 @@ public class ProfileDaoImpl extends AbstractDAO implements ProfileDao {
      * this attribute and will be used by all calls to this DAO, otherwise a new
      * Connection will be allocated for each operation.
      */
-    protected java.sql.Connection userConn;
+    private java.sql.Connection userConn;
 
-    protected static final Logger logger = Logger
-	    .getLogger(ProfileDaoImpl.class);
+    private static final Logger logger = Logger.getLogger(ProfileDaoImpl.class);
 
     /**
      * All finder methods in this class use this SELECT constant to build their
      * queries
      */
-    protected final String SQL_SELECT = "SELECT idprofile, fname, surname, sex, pict, introd, hobby FROM "
+    private final String SQL_SELECT = "SELECT idprofile, fname, surname, sex, pict, introd, hobby FROM "
 	    + getTableName() + "";
 
     /**
      * Finder methods will pass this value to the JDBC setMaxRows method
      */
-    protected int maxRows;
+    private int maxRows;
 
     /**
      * SQL INSERT statement for this table
      */
-    protected final String SQL_INSERT = "INSERT INTO "
+    private final String SQL_INSERT = "INSERT INTO "
 	    + getTableName()
 	    + " ( idprofile, fname, surname, sex, pict, introd, hobby ) VALUES ( ?, ?, ?, ?, ?, ?, ? )";
 
     /**
      * SQL UPDATE statement for this table
      */
-    protected final String SQL_UPDATE = "UPDATE "
+    private final String SQL_UPDATE = "UPDATE "
 	    + getTableName()
 	    + " SET idprofile = ?, fname = ?, surname = ?, sex = ?, pict = ?, introd = ?, hobby = ? WHERE idprofile = ?";
 
     /**
      * SQL DELETE statement for this table
      */
-    protected final String SQL_DELETE = "DELETE FROM " + getTableName()
+    private final String SQL_DELETE = "DELETE FROM " + getTableName()
 	    + " WHERE idprofile = ?";
 
     /**
      * Index of column idprofile
      */
-    protected static final int COLUMN_ID_PROFILE = 1;
+    private static final int COLUMN_ID_PROFILE = 1;
 
     /**
      * Index of column fname
      */
-    protected static final int COLUMN_F_NAME = 2;
+    private static final int COLUMN_F_NAME = 2;
 
     /**
      * Index of column surname
      */
-    protected static final int COLUMN_SUR_NAME = 3;
+    private static final int COLUMN_SUR_NAME = 3;
 
     /**
      * Index of column sex
      */
-    protected static final int COLUMN_SEX = 4;
+    private static final int COLUMN_SEX = 4;
 
     /**
      * Index of column pict
      */
-    protected static final int COLUMN_PICT = 5;
+    private static final int COLUMN_PICT = 5;
 
     /**
      * Index of column introd
      */
-    protected static final int COLUMN_INTROD = 6;
+    private static final int COLUMN_INTROD = 6;
 
     /**
      * Index of column hobby
      */
-    protected static final int COLUMN_HOBBY = 7;
+    private static final int COLUMN_HOBBY = 7;
 
     /**
      * Number of columns
      */
-    protected static final int NUMBER_OF_COLUMNS = 7;
+    private static final int NUMBER_OF_COLUMNS = 7;
 
     /**
      * Index of primary-key column idprofile
      */
-    protected static final int PK_COLUMN_ID_PROFILE = 1;
+    private static final int PK_COLUMN_ID_PROFILE = 1;
 
     /**
      * Inserts a new row in the profile table.
@@ -132,7 +131,7 @@ public class ProfileDaoImpl extends AbstractDAO implements ProfileDao {
 
 	    stmt.setString(index++, dto.getFName());
 	    stmt.setString(index++, dto.getSurName());
-	    stmt.setString(index++, dto.getSex());
+	    stmt.setString(index++, dto.getSex().name());
 	    super.setBlobColumn(stmt, index++, dto.getPict());
 	    stmt.setString(index++, dto.getIntrod());
 	    stmt.setString(index++, dto.getHobby());
@@ -196,7 +195,7 @@ public class ProfileDaoImpl extends AbstractDAO implements ProfileDao {
 
 	    stmt.setString(index++, dto.getFName());
 	    stmt.setString(index++, dto.getSurName());
-	    stmt.setString(index++, dto.getSex());
+	    stmt.setString(index++, dto.getSex().name());
 	    super.setBlobColumn(stmt, index++, dto.getPict());
 	    stmt.setString(index++, dto.getIntrod());
 	    stmt.setString(index++, dto.getHobby());
@@ -411,7 +410,7 @@ public class ProfileDaoImpl extends AbstractDAO implements ProfileDao {
     /**
      * Fetches a single row from the result set
      */
-    protected Profile fetchSingleResult(ResultSet rs) throws SQLException {
+    private Profile fetchSingleResult(ResultSet rs) throws SQLException {
 	if (rs.next()) {
 	    Profile dto = new Profile();
 	    populateDto(dto, rs);
@@ -425,7 +424,7 @@ public class ProfileDaoImpl extends AbstractDAO implements ProfileDao {
     /**
      * Fetches multiple rows from the result set
      */
-    protected Profile[] fetchMultiResults(ResultSet rs) throws SQLException {
+    private Profile[] fetchMultiResults(ResultSet rs) throws SQLException {
 	Collection resultList = new ArrayList();
 	while (rs.next()) {
 	    Profile dto = new Profile();
@@ -441,7 +440,7 @@ public class ProfileDaoImpl extends AbstractDAO implements ProfileDao {
     /**
      * Populates a DTO with data from a ResultSet
      */
-    protected void populateDto(Profile dto, ResultSet rs) throws SQLException {
+    private void populateDto(Profile dto, ResultSet rs) throws SQLException {
 	dto.setIdProfile(new Integer(rs.getInt(COLUMN_ID_PROFILE)));
 	dto.setFName(rs.getString(COLUMN_F_NAME));
 	dto.setSurName(rs.getString(COLUMN_SUR_NAME));
@@ -454,7 +453,7 @@ public class ProfileDaoImpl extends AbstractDAO implements ProfileDao {
     /**
      * Resets the modified attributes in the DTO
      */
-    protected void reset(Profile dto) {
+    private void reset(Profile dto) {
     }
 
     /**

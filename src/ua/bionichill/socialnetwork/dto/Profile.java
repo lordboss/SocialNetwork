@@ -3,6 +3,11 @@ package ua.bionichill.socialnetwork.dto;
 import java.io.Serializable;
 
 public class Profile implements Serializable {
+
+    public enum Sex {
+	MALE, FEMALE
+    }
+
     /**
      * This attribute maps to the column idprofile in the profile table.
      */
@@ -21,7 +26,7 @@ public class Profile implements Serializable {
     /**
      * This attribute maps to the column sex in the profile table.
      */
-    private String sex;
+    private Sex sex;
 
     /**
      * This attribute maps to the column pict in the profile table.
@@ -39,7 +44,7 @@ public class Profile implements Serializable {
     private String hobby;
 
     /**
-     * Method 'Profile'
+     * default constructor for 'Profile'
      * 
      */
     public Profile() {
@@ -102,9 +107,9 @@ public class Profile implements Serializable {
     /**
      * Method 'getSex'
      * 
-     * @return String
+     * @return Sex
      */
-    public String getSex() {
+    public Sex getSex() {
 	return sex;
     }
 
@@ -113,8 +118,17 @@ public class Profile implements Serializable {
      * 
      * @param sex
      */
-    public void setSex(String sex) {
+    public void setSex(Sex sex) {
 	this.sex = sex;
+    }
+
+    /**
+     * Method 'setSex'
+     * 
+     * @param sex
+     */
+    public void setSex(String sex) {
+	this.sex = Sex.valueOf(sex);
     }
 
     /**

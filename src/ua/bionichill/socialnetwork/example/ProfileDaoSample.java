@@ -14,7 +14,7 @@ public class ProfileDaoSample {
     public static void main(String[] arg) throws Exception {
 	// Uncomment one of the lines below to test the generated code
 
-	// findAll();
+	findAll();
 	// findWhereIdProfileEquals(null);
 	// findWhereFNameEquals("");
 	// findWhereSurNameEquals("");
