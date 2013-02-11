@@ -262,7 +262,7 @@ public class FriendshDaoSample {
 	buf.append(", ");
 	buf.append(dto.getStatusFriendsh());
 	buf.append(", ");
-	buf.append(dto.getInviteId());
+	buf.append(dto.getInvite());
 	buf.append(", ");
 	buf.append(dto.getFriendshDate());
 	System.out.println(buf.toString());

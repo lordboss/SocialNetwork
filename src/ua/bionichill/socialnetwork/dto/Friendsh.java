@@ -7,32 +7,32 @@ public class Friendsh implements Serializable {
     /**
      * This attribute maps to the column idfriendsh in the friendsh table.
      */
-    protected Integer idFriendsh;
+    private Integer idFriendsh;
 
     /**
      * This attribute maps to the column friendfrom in the friendsh table.
      */
-    protected String friendFrom;
+    private User friendFrom;
 
     /**
      * This attribute maps to the column friendto in the friendsh table.
      */
-    protected String friendTo;
+    private User friendTo;
 
     /**
      * This attribute maps to the column statusfriendsh in the friendsh table.
      */
-    protected String statusFriendsh;
+    private FriendshStatus statusFriendsh;
 
     /**
      * This attribute maps to the column inviteid in the friendsh table.
      */
-    protected Integer inviteId;
+    private Invite invite;
 
     /**
      * This attribute maps to the column friendshdate in the friendsh table.
      */
-    protected Date friendshDate;
+    private Date friendshDate;
 
     /**
      * Method 'Friendsh'
@@ -62,9 +62,9 @@ public class Friendsh implements Serializable {
     /**
      * Method 'getFriendFrom'
      * 
-     * @return String
+     * @return User
      */
-    public String getFriendFrom() {
+    public User getFriendFrom() {
 	return friendFrom;
     }
 
@@ -73,16 +73,16 @@ public class Friendsh implements Serializable {
      * 
      * @param friendFrom
      */
-    public void setFriendFrom(String friendFrom) {
+    public void setFriendFrom(User friendFrom) {
 	this.friendFrom = friendFrom;
     }
 
     /**
      * Method 'getFriendTo'
      * 
-     * @return String
+     * @return User
      */
-    public String getFriendTo() {
+    public User getFriendTo() {
 	return friendTo;
     }
 
@@ -91,16 +91,16 @@ public class Friendsh implements Serializable {
      * 
      * @param friendTo
      */
-    public void setFriendTo(String friendTo) {
+    public void setFriendTo(User friendTo) {
 	this.friendTo = friendTo;
     }
 
     /**
      * Method 'getStatusFriendsh'
      * 
-     * @return String
+     * @return FriendshStatus
      */
-    public String getStatusFriendsh() {
+    public FriendshStatus getStatusFriendsh() {
 	return statusFriendsh;
     }
 
@@ -109,26 +109,26 @@ public class Friendsh implements Serializable {
      * 
      * @param statusFriendsh
      */
-    public void setStatusFriendsh(String statusFriendsh) {
+    public void setStatusFriendsh(FriendshStatus statusFriendsh) {
 	this.statusFriendsh = statusFriendsh;
     }
 
     /**
-     * Method 'getInviteId'
+     * Method 'getInvite'
      * 
-     * @return Integer
+     * @return Invite
      */
-    public Integer getInviteId() {
-	return inviteId;
+    public Invite getInvite() {
+	return invite;
     }
 
     /**
-     * Method 'setInviteId'
+     * Method 'setInvite'
      * 
-     * @param inviteId
+     * @param invite
      */
-    public void setInviteId(Integer inviteId) {
-	this.inviteId = inviteId;
+    public void setInvite(Invite invite) {
+	this.invite = invite;
     }
 
     /**
@@ -189,8 +189,8 @@ public class Friendsh implements Serializable {
 	    return false;
 	}
 
-	if (inviteId == null ? _cast.inviteId != inviteId : !inviteId
-		.equals(_cast.inviteId)) {
+	if (invite == null ? _cast.invite != invite : !invite
+		.equals(_cast.invite)) {
 	    return false;
 	}
 
@@ -225,8 +225,8 @@ public class Friendsh implements Serializable {
 	    _hashCode = 29 * _hashCode + statusFriendsh.hashCode();
 	}
 
-	if (inviteId != null) {
-	    _hashCode = 29 * _hashCode + inviteId.hashCode();
+	if (invite != null) {
+	    _hashCode = 29 * _hashCode + invite.hashCode();
 	}
 
 	if (friendshDate != null) {
@@ -254,10 +254,10 @@ public class Friendsh implements Serializable {
 	StringBuffer ret = new StringBuffer();
 	ret.append("ua.bionichill.socialnetwork.dto.Friendsh: ");
 	ret.append("idFriendsh=" + idFriendsh);
-	ret.append(", friendFrom=" + friendFrom);
-	ret.append(", friendTo=" + friendTo);
-	ret.append(", statusFriendsh=" + statusFriendsh);
-	ret.append(", inviteId=" + inviteId);
+	ret.append(", friendFrom=" + friendFrom.toString());
+	ret.append(", friendTo=" + friendTo.toString());
+	ret.append(", statusFriendsh=" + statusFriendsh.toString());
+	ret.append(", inviteId=" + invite.toString());
 	ret.append(", friendshDate=" + friendshDate);
 	return ret.toString();
     }

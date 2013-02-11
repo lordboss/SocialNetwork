@@ -15,6 +15,9 @@ import ua.bionichill.socialnetwork.dao.FriendshDao;
 import ua.bionichill.socialnetwork.dto.Friendsh;
 import ua.bionichill.socialnetwork.dto.FriendshPk;
 import ua.bionichill.socialnetwork.exceptions.FriendshDaoException;
+import ua.bionichill.socialnetwork.exceptions.FriendshStatusDaoException;
+import ua.bionichill.socialnetwork.exceptions.InviteDaoException;
+import ua.bionichill.socialnetwork.exceptions.UserDaoException;
 
 public class FriendshDaoImpl extends AbstractDAO implements FriendshDao {
     /**
@@ -126,11 +129,11 @@ public class FriendshDaoImpl extends AbstractDAO implements FriendshDao {
 		stmt.setNull(index++, java.sql.Types.INTEGER);
 	    }
 
-	    stmt.setString(index++, dto.getFriendFrom());
-	    stmt.setString(index++, dto.getFriendTo());
-	    stmt.setString(index++, dto.getStatusFriendsh());
-	    if (dto.getInviteId() != null) {
-		stmt.setInt(index++, dto.getInviteId().intValue());
+	    stmt.setString(index++, dto.getFriendFrom().getEmail());
+	    stmt.setString(index++, dto.getFriendTo().getEmail());
+	    stmt.setString(index++, dto.getStatusFriendsh().getFriendshStatus());
+	    if (dto.getInvite().getIdInvite() != null) {
+		stmt.setInt(index++, (dto.getInvite().getIdInvite()).intValue());
 	    } else {
 		stmt.setNull(index++, java.sql.Types.INTEGER);
 	    }
@@ -195,11 +198,11 @@ public class FriendshDaoImpl extends AbstractDAO implements FriendshDao {
 		stmt.setNull(index++, java.sql.Types.INTEGER);
 	    }
 
-	    stmt.setString(index++, dto.getFriendFrom());
-	    stmt.setString(index++, dto.getFriendTo());
-	    stmt.setString(index++, dto.getStatusFriendsh());
-	    if (dto.getInviteId() != null) {
-		stmt.setInt(index++, dto.getInviteId().intValue());
+	    stmt.setString(index++, dto.getFriendFrom().getEmail());
+	    stmt.setString(index++, dto.getFriendTo().getEmail());
+	    stmt.setString(index++, dto.getStatusFriendsh().getFriendshStatus());
+	    if (dto.getInvite().getIdInvite() != null) {
+		stmt.setInt(index++, (dto.getInvite().getIdInvite()).intValue());
 	    } else {
 		stmt.setNull(index++, java.sql.Types.INTEGER);
 	    }
@@ -484,10 +487,34 @@ public class FriendshDaoImpl extends AbstractDAO implements FriendshDao {
      */
     protected void populateDto(Friendsh dto, ResultSet rs) throws SQLException {
 	dto.setIdFriendsh(new Integer(rs.getInt(COLUMN_ID_FRIENDSH)));
-	dto.setFriendFrom(rs.getString(COLUMN_FRIEND_FROM));
-	dto.setFriendTo(rs.getString(COLUMN_FRIEND_TO));
-	dto.setStatusFriendsh(rs.getString(COLUMN_STATUS_FRIENDSH));
-	dto.setInviteId(new Integer(rs.getInt(COLUMN_INVITE_ID)));
+	try {
+	    dto.setFriendFrom(new UserDaoImpl().findByPrimaryKey(rs
+		    .getString(COLUMN_FRIEND_FROM)));
+	} catch (UserDaoException e3) {
+	    // TODO Auto-generated catch block
+	    e3.printStackTrace();
+	}
+	try {
+	    dto.setFriendTo(new UserDaoImpl().findByPrimaryKey(rs
+		    .getString(COLUMN_FRIEND_TO)));
+	} catch (UserDaoException e2) {
+	    // TODO Auto-generated catch block
+	    e2.printStackTrace();
+	}
+	try {
+	    dto.setStatusFriendsh(new FriendshStatusDaoImpl()
+		    .findByPrimaryKey(rs.getString(COLUMN_STATUS_FRIENDSH)));
+	} catch (FriendshStatusDaoException e1) {
+	    // TODO Auto-generated catch block
+	    e1.printStackTrace();
+	}
+	try {
+	    dto.setInvite(new InviteDaoImpl().findByPrimaryKey(new Integer(rs
+		    .getInt(COLUMN_INVITE_ID))));
+	} catch (InviteDaoException e) {
+	    // TODO Auto-generated catch block
+	    e.printStackTrace();
+	}
 	dto.setFriendshDate(rs.getTimestamp(COLUMN_FRIENDSH_DATE));
     }
 
