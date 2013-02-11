@@ -6,7 +6,7 @@ import java.io.Serializable;
  * This class represents the primary key of the friendsh table.
  */
 public class FriendshPk implements Serializable {
-    protected Integer idFriendsh;
+    private Integer idFriendsh;
 
     /**
      * Sets the value of idFriendsh

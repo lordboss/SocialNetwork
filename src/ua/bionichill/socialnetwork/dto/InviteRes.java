@@ -6,7 +6,7 @@ public class InviteRes implements Serializable {
     /**
      * This attribute maps to the column inviteres in the inviteres table.
      */
-    protected String inviteRes;
+    private String inviteRes;
 
     /**
      * Method 'InviteRes'

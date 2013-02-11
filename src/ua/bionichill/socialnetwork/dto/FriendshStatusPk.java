@@ -6,7 +6,7 @@ import java.io.Serializable;
  * This class represents the primary key of the friendshstatus table.
  */
 public class FriendshStatusPk implements Serializable {
-    protected String friendshStatus;
+    private String friendshStatus;
 
     /**
      * Sets the value of friendshStatus

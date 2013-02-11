@@ -6,7 +6,7 @@ public class MsgStatus implements Serializable {
     /**
      * This attribute maps to the column msgstatus in the msgstatus table.
      */
-    protected String msgStatus;
+    private String msgStatus;
 
     /**
      * Method 'MsgStatus'

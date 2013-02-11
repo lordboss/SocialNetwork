@@ -6,7 +6,7 @@ public class MsgType implements Serializable {
     /**
      * This attribute maps to the column msgtype in the msgtype table.
      */
-    protected String msgType;
+    private String msgType;
 
     /**
      * Method 'MsgType'

@@ -6,7 +6,7 @@ import java.io.Serializable;
  * This class represents the primary key of the ustatus table.
  */
 public class UStatusPk implements Serializable {
-    protected String uStatus;
+    private String uStatus;
 
     /**
      * Sets the value of uStatus

@@ -6,7 +6,7 @@ import java.io.Serializable;
  * This class represents the primary key of the msgstatus table.
  */
 public class MsgStatusPk implements Serializable {
-    protected String msgStatus;
+    private String msgStatus;
 
     /**
      * Sets the value of msgStatus

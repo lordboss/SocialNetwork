@@ -6,7 +6,7 @@ public class UType implements Serializable {
     /**
      * This attribute maps to the column utype in the utype table.
      */
-    protected String uType;
+    private String uType;
 
     /**
      * Method 'UType'

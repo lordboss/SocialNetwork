@@ -6,7 +6,7 @@ import java.io.Serializable;
  * This class represents the primary key of the invite table.
  */
 public class InvitePk implements Serializable {
-    protected Integer idInvite;
+    private Integer idInvite;
 
     /**
      * Sets the value of idInvite

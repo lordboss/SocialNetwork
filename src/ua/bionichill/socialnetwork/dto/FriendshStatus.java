@@ -7,7 +7,7 @@ public class FriendshStatus implements Serializable {
      * This attribute maps to the column friendshstatus in the friendshstatus
      * table.
      */
-    protected String friendshStatus;
+    private String friendshStatus;
 
     /**
      * Method 'FriendshStatus'

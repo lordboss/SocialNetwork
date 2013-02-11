@@ -6,7 +6,7 @@ import java.io.Serializable;
  * This class represents the primary key of the msgtype table.
  */
 public class MsgTypePk implements Serializable {
-    protected String msgType;
+    private String msgType;
 
     /**
      * Sets the value of msgType

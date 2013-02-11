@@ -6,7 +6,7 @@ public class UStatus implements Serializable {
     /**
      * This attribute maps to the column ustatus in the ustatus table.
      */
-    protected String uStatus;
+    private String uStatus;
 
     /**
      * Method 'UStatus'

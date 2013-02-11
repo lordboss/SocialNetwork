@@ -6,7 +6,7 @@ import java.io.Serializable;
  * This class represents the primary key of the inviteres table.
  */
 public class InviteResPk implements Serializable {
-    protected String inviteRes;
+    private String inviteRes;
 
     /**
      * Sets the value of inviteRes

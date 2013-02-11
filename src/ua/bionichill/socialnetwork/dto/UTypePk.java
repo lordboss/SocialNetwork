@@ -6,7 +6,7 @@ import java.io.Serializable;
  * This class represents the primary key of the utype table.
  */
 public class UTypePk implements Serializable {
-    protected String uType;
+    private String uType;
 
     /**
      * Sets the value of uType
