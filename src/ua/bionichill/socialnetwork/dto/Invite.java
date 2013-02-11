@@ -7,27 +7,27 @@ public class Invite implements Serializable {
     /**
      * This attribute maps to the column idinvite in the invite table.
      */
-    protected Integer idInvite;
+    private Integer idInvite;
 
     /**
      * This attribute maps to the column inviter in the invite table.
      */
-    protected String inviter;
+    private User inviter;
 
     /**
      * This attribute maps to the column invitee in the invite table.
      */
-    protected String invitee;
+    private User invitee;
 
     /**
      * This attribute maps to the column res in the invite table.
      */
-    protected String res;
+    private InviteRes res;
 
     /**
      * This attribute maps to the column invitedate in the invite table.
      */
-    protected Date inviteDate;
+    private Date inviteDate;
 
     /**
      * Method 'Invite'
@@ -57,9 +57,9 @@ public class Invite implements Serializable {
     /**
      * Method 'getInviter'
      * 
-     * @return String
+     * @return User
      */
-    public String getInviter() {
+    public User getInviter() {
 	return inviter;
     }
 
@@ -68,16 +68,16 @@ public class Invite implements Serializable {
      * 
      * @param inviter
      */
-    public void setInviter(String inviter) {
+    public void setInviter(User inviter) {
 	this.inviter = inviter;
     }
 
     /**
      * Method 'getInvitee'
      * 
-     * @return String
+     * @return User
      */
-    public String getInvitee() {
+    public User getInvitee() {
 	return invitee;
     }
 
@@ -86,16 +86,16 @@ public class Invite implements Serializable {
      * 
      * @param invitee
      */
-    public void setInvitee(String invitee) {
+    public void setInvitee(User invitee) {
 	this.invitee = invitee;
     }
 
     /**
      * Method 'getRes'
      * 
-     * @return String
+     * @return InviteRes
      */
-    public String getRes() {
+    public InviteRes getRes() {
 	return res;
     }
 
@@ -104,7 +104,7 @@ public class Invite implements Serializable {
      * 
      * @param res
      */
-    public void setRes(String res) {
+    public void setRes(InviteRes res) {
 	this.res = res;
     }
 
@@ -221,9 +221,9 @@ public class Invite implements Serializable {
 	StringBuffer ret = new StringBuffer();
 	ret.append("ua.bionichill.socialnetwork.dto.Invite: ");
 	ret.append("idInvite=" + idInvite);
-	ret.append(", inviter=" + inviter);
-	ret.append(", invitee=" + invitee);
-	ret.append(", res=" + res);
+	ret.append(", inviter=" + inviter.toString());
+	ret.append(", invitee=" + invitee.toString());
+	ret.append(", res=" + res.toString());
 	ret.append(", inviteDate=" + inviteDate);
 	return ret.toString();
     }

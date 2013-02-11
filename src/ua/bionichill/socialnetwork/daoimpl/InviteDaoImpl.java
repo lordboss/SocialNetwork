@@ -15,6 +15,8 @@ import ua.bionichill.socialnetwork.dao.InviteDao;
 import ua.bionichill.socialnetwork.dto.Invite;
 import ua.bionichill.socialnetwork.dto.InvitePk;
 import ua.bionichill.socialnetwork.exceptions.InviteDaoException;
+import ua.bionichill.socialnetwork.exceptions.InviteResDaoException;
+import ua.bionichill.socialnetwork.exceptions.UserDaoException;
 
 public class InviteDaoImpl extends AbstractDAO implements InviteDao {
     /**
@@ -121,9 +123,9 @@ public class InviteDaoImpl extends AbstractDAO implements InviteDao {
 		stmt.setNull(index++, java.sql.Types.INTEGER);
 	    }
 
-	    stmt.setString(index++, dto.getInviter());
-	    stmt.setString(index++, dto.getInvitee());
-	    stmt.setString(index++, dto.getRes());
+	    stmt.setString(index++, dto.getInviter().getEmail());
+	    stmt.setString(index++, dto.getInvitee().getEmail());
+	    stmt.setString(index++, dto.getRes().getInviteRes());
 	    stmt.setTimestamp(index++, dto.getInviteDate() == null ? null
 		    : new java.sql.Timestamp(dto.getInviteDate().getTime()));
 	    if (logger.isDebugEnabled()) {
@@ -184,9 +186,9 @@ public class InviteDaoImpl extends AbstractDAO implements InviteDao {
 		stmt.setNull(index++, java.sql.Types.INTEGER);
 	    }
 
-	    stmt.setString(index++, dto.getInviter());
-	    stmt.setString(index++, dto.getInvitee());
-	    stmt.setString(index++, dto.getRes());
+	    stmt.setString(index++, dto.getInviter().getEmail());
+	    stmt.setString(index++, dto.getInvitee().getEmail());
+	    stmt.setString(index++, dto.getRes().getInviteRes());
 	    stmt.setTimestamp(index++, dto.getInviteDate() == null ? null
 		    : new java.sql.Timestamp(dto.getInviteDate().getTime()));
 	    if (pk.getIdInvite() != null) {
@@ -440,9 +442,27 @@ public class InviteDaoImpl extends AbstractDAO implements InviteDao {
      */
     protected void populateDto(Invite dto, ResultSet rs) throws SQLException {
 	dto.setIdInvite(new Integer(rs.getInt(COLUMN_ID_INVITE)));
-	dto.setInviter(rs.getString(COLUMN_INVITER));
-	dto.setInvitee(rs.getString(COLUMN_INVITEE));
-	dto.setRes(rs.getString(COLUMN_RES));
+	try {
+	    dto.setInviter(new UserDaoImpl().findByPrimaryKey(rs
+		    .getString(COLUMN_INVITER)));
+	} catch (UserDaoException e2) {
+	    // TODO Auto-generated catch block
+	    e2.printStackTrace();
+	}
+	try {
+	    dto.setInvitee(new UserDaoImpl().findByPrimaryKey(rs
+		    .getString(COLUMN_INVITEE)));
+	} catch (UserDaoException e1) {
+	    // TODO Auto-generated catch block
+	    e1.printStackTrace();
+	}
+	try {
+	    dto.setRes(new InviteResDaoImpl().findByPrimaryKey(rs
+		    .getString(COLUMN_RES)));
+	} catch (InviteResDaoException e) {
+	    // TODO Auto-generated catch block
+	    e.printStackTrace();
+	}
 	dto.setInviteDate(rs.getTimestamp(COLUMN_INVITE_DATE));
     }
 
