@@ -15,6 +15,9 @@ import ua.bionichill.socialnetwork.dao.MsgDao;
 import ua.bionichill.socialnetwork.dto.Msg;
 import ua.bionichill.socialnetwork.dto.MsgPk;
 import ua.bionichill.socialnetwork.exceptions.MsgDaoException;
+import ua.bionichill.socialnetwork.exceptions.MsgStatusDaoException;
+import ua.bionichill.socialnetwork.exceptions.MsgTypeDaoException;
+import ua.bionichill.socialnetwork.exceptions.UserDaoException;
 
 public class MsgDaoImpl extends AbstractDAO implements MsgDao {
     /**
@@ -24,91 +27,91 @@ public class MsgDaoImpl extends AbstractDAO implements MsgDao {
      * this attribute and will be used by all calls to this DAO, otherwise a new
      * Connection will be allocated for each operation.
      */
-    protected java.sql.Connection userConn;
+    private java.sql.Connection userConn;
 
-    protected static final Logger logger = Logger.getLogger(MsgDaoImpl.class);
+    private static final Logger logger = Logger.getLogger(MsgDaoImpl.class);
 
     /**
      * All finder methods in this class use this SELECT constant to build their
      * queries
      */
-    protected final String SQL_SELECT = "SELECT idmsg, mailer, recipient, headmsg, bodymsg, statusmsg, typemsg, sendoffdate FROM "
+    private final String SQL_SELECT = "SELECT idmsg, mailer, recipient, headmsg, bodymsg, statusmsg, typemsg, sendoffdate FROM "
 	    + getTableName() + "";
 
     /**
      * Finder methods will pass this value to the JDBC setMaxRows method
      */
-    protected int maxRows;
+    private int maxRows;
 
     /**
      * SQL INSERT statement for this table
      */
-    protected final String SQL_INSERT = "INSERT INTO "
+    private final String SQL_INSERT = "INSERT INTO "
 	    + getTableName()
 	    + " ( idmsg, mailer, recipient, headmsg, bodymsg, statusmsg, typemsg, sendoffdate ) VALUES ( ?, ?, ?, ?, ?, ?, ?, ? )";
 
     /**
      * SQL UPDATE statement for this table
      */
-    protected final String SQL_UPDATE = "UPDATE "
+    private final String SQL_UPDATE = "UPDATE "
 	    + getTableName()
 	    + " SET idmsg = ?, mailer = ?, recipient = ?, headmsg = ?, bodymsg = ?, statusmsg = ?, typemsg = ?, sendoffdate = ? WHERE idmsg = ?";
 
     /**
      * SQL DELETE statement for this table
      */
-    protected final String SQL_DELETE = "DELETE FROM " + getTableName()
+    private final String SQL_DELETE = "DELETE FROM " + getTableName()
 	    + " WHERE idmsg = ?";
 
     /**
      * Index of column idmsg
      */
-    protected static final int COLUMN_ID_MSG = 1;
+    private static final int COLUMN_ID_MSG = 1;
 
     /**
      * Index of column mailer
      */
-    protected static final int COLUMN_MAILER = 2;
+    private static final int COLUMN_MAILER = 2;
 
     /**
      * Index of column recipient
      */
-    protected static final int COLUMN_RECIPIENT = 3;
+    private static final int COLUMN_RECIPIENT = 3;
 
     /**
      * Index of column headmsg
      */
-    protected static final int COLUMN_HEAD_MSG = 4;
+    private static final int COLUMN_HEAD_MSG = 4;
 
     /**
      * Index of column bodymsg
      */
-    protected static final int COLUMN_BODY_MSG = 5;
+    private static final int COLUMN_BODY_MSG = 5;
 
     /**
      * Index of column statusmsg
      */
-    protected static final int COLUMN_STATUS_MSG = 6;
+    private static final int COLUMN_STATUS_MSG = 6;
 
     /**
      * Index of column typemsg
      */
-    protected static final int COLUMN_TYPE_MSG = 7;
+    private static final int COLUMN_TYPE_MSG = 7;
 
     /**
      * Index of column sendoffdate
      */
-    protected static final int COLUMN_SEND_OFF_DATE = 8;
+    private static final int COLUMN_SEND_OFF_DATE = 8;
 
     /**
      * Number of columns
      */
-    protected static final int NUMBER_OF_COLUMNS = 8;
+    private static final int NUMBER_OF_COLUMNS = 8;
 
     /**
      * Index of primary-key column idmsg
      */
-    protected static final int PK_COLUMN_ID_MSG = 1;
+    private static final int PK_COLUMN_ID_MSG = 1;
 
     /**
      * Inserts a new row in the msg table.
@@ -135,12 +138,12 @@ public class MsgDaoImpl extends AbstractDAO implements MsgDao {
 		stmt.setNull(index++, java.sql.Types.INTEGER);
 	    }
 
-	    stmt.setString(index++, dto.getMailer());
-	    stmt.setString(index++, dto.getRecipient());
+	    stmt.setString(index++, dto.getMailer().getEmail());
+	    stmt.setString(index++, dto.getRecipient().getEmail());
 	    stmt.setString(index++, dto.getHeadMsg());
 	    stmt.setString(index++, dto.getBodyMsg());
-	    stmt.setString(index++, dto.getStatusMsg());
-	    stmt.setString(index++, dto.getTypeMsg());
+	    stmt.setString(index++, dto.getStatusMsg().getMsgStatus());
+	    stmt.setString(index++, dto.getTypeMsg().getMsgType());
 	    stmt.setTimestamp(index++, dto.getSendOffDate() == null ? null
 		    : new java.sql.Timestamp(dto.getSendOffDate().getTime()));
 	    if (logger.isDebugEnabled()) {
@@ -201,12 +204,12 @@ public class MsgDaoImpl extends AbstractDAO implements MsgDao {
 		stmt.setNull(index++, java.sql.Types.INTEGER);
 	    }
 
-	    stmt.setString(index++, dto.getMailer());
-	    stmt.setString(index++, dto.getRecipient());
+	    stmt.setString(index++, dto.getMailer().getEmail());
+	    stmt.setString(index++, dto.getRecipient().getEmail());
 	    stmt.setString(index++, dto.getHeadMsg());
 	    stmt.setString(index++, dto.getBodyMsg());
-	    stmt.setString(index++, dto.getStatusMsg());
-	    stmt.setString(index++, dto.getTypeMsg());
+	    stmt.setString(index++, dto.getStatusMsg().getMsgStatus());
+	    stmt.setString(index++, dto.getTypeMsg().getMsgType());
 	    stmt.setTimestamp(index++, dto.getSendOffDate() == null ? null
 		    : new java.sql.Timestamp(dto.getSendOffDate().getTime()));
 	    if (pk.getIdMsg() != null) {
@@ -465,7 +468,7 @@ public class MsgDaoImpl extends AbstractDAO implements MsgDao {
     /**
      * Fetches a single row from the result set
      */
-    protected Msg fetchSingleResult(ResultSet rs) throws SQLException {
+    private Msg fetchSingleResult(ResultSet rs) throws SQLException {
 	if (rs.next()) {
 	    Msg dto = new Msg();
 	    populateDto(dto, rs);
@@ -479,7 +482,7 @@ public class MsgDaoImpl extends AbstractDAO implements MsgDao {
     /**
      * Fetches multiple rows from the result set
      */
-    protected Msg[] fetchMultiResults(ResultSet rs) throws SQLException {
+    private Msg[] fetchMultiResults(ResultSet rs) throws SQLException {
 	Collection resultList = new ArrayList();
 	while (rs.next()) {
 	    Msg dto = new Msg();
@@ -495,21 +498,45 @@ public class MsgDaoImpl extends AbstractDAO implements MsgDao {
     /**
      * Populates a DTO with data from a ResultSet
      */
-    protected void populateDto(Msg dto, ResultSet rs) throws SQLException {
+    private void populateDto(Msg dto, ResultSet rs) throws SQLException {
 	dto.setIdMsg(new Integer(rs.getInt(COLUMN_ID_MSG)));
-	dto.setMailer(rs.getString(COLUMN_MAILER));
-	dto.setRecipient(rs.getString(COLUMN_RECIPIENT));
+	try {
+	    dto.setMailer(new UserDaoImpl().findByPrimaryKey(rs
+		    .getString(COLUMN_MAILER)));
+	} catch (UserDaoException e3) {
+	    // TODO Auto-generated catch block
+	    e3.printStackTrace();
+	}
+	try {
+	    dto.setRecipient(new UserDaoImpl().findByPrimaryKey(rs
+		    .getString(COLUMN_RECIPIENT)));
+	} catch (UserDaoException e2) {
+	    // TODO Auto-generated catch block
+	    e2.printStackTrace();
+	}
 	dto.setHeadMsg(rs.getString(COLUMN_HEAD_MSG));
 	dto.setBodyMsg(rs.getString(COLUMN_BODY_MSG));
-	dto.setStatusMsg(rs.getString(COLUMN_STATUS_MSG));
-	dto.setTypeMsg(rs.getString(COLUMN_TYPE_MSG));
+	try {
+	    dto.setStatusMsg(new MsgStatusDaoImpl().findByPrimaryKey(rs
+		    .getString(COLUMN_STATUS_MSG)));
+	} catch (MsgStatusDaoException e1) {
+	    // TODO Auto-generated catch block
+	    e1.printStackTrace();
+	}
+	try {
+	    dto.setTypeMsg(new MsgTypeDaoImpl().findByPrimaryKey(rs
+		    .getString(COLUMN_TYPE_MSG)));
+	} catch (MsgTypeDaoException e) {
+	    // TODO Auto-generated catch block
+	    e.printStackTrace();
+	}
 	dto.setSendOffDate(rs.getTimestamp(COLUMN_SEND_OFF_DATE));
     }
 
     /**
      * Resets the modified attributes in the DTO
      */
-    protected void reset(Msg dto) {
+    private void reset(Msg dto) {
     }
 
     /**

@@ -16,10 +16,10 @@ public class MsgDaoSample {
     public static void main(String[] arg) throws Exception {
 	// Uncomment one of the lines below to test the generated code
 
-	// findAll();
+	findAll();
 	// findByMsgStatus("");
 	// findByMsgType("");
-	// findByMailer("");
+	findByMailer("petr@petr.com");
 	// findByRecipient("");
 	// findWhereIdMsgEquals(null);
 	// findWhereMailerEquals("");

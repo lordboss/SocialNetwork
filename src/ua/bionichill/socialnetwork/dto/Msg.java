@@ -7,42 +7,42 @@ public class Msg implements Serializable {
     /**
      * This attribute maps to the column idmsg in the msg table.
      */
-    protected Integer idMsg;
+    private Integer idMsg;
 
     /**
      * This attribute maps to the column mailer in the msg table.
      */
-    protected String mailer;
+    private User mailer;
 
     /**
      * This attribute maps to the column recipient in the msg table.
      */
-    protected String recipient;
+    private User recipient;
 
     /**
      * This attribute maps to the column headmsg in the msg table.
      */
-    protected String headMsg;
+    private String headMsg;
 
     /**
      * This attribute maps to the column bodymsg in the msg table.
      */
-    protected String bodyMsg;
+    private String bodyMsg;
 
     /**
      * This attribute maps to the column statusmsg in the msg table.
      */
-    protected String statusMsg;
+    private MsgStatus statusMsg;
 
     /**
      * This attribute maps to the column typemsg in the msg table.
      */
-    protected String typeMsg;
+    private MsgType typeMsg;
 
     /**
      * This attribute maps to the column sendoffdate in the msg table.
      */
-    protected Date sendOffDate;
+    private Date sendOffDate;
 
     /**
      * Method 'Msg'
@@ -72,9 +72,9 @@ public class Msg implements Serializable {
     /**
      * Method 'getMailer'
      * 
-     * @return String
+     * @return User
      */
-    public String getMailer() {
+    public User getMailer() {
 	return mailer;
     }
 
@@ -83,16 +83,16 @@ public class Msg implements Serializable {
      * 
      * @param mailer
      */
-    public void setMailer(String mailer) {
+    public void setMailer(User mailer) {
 	this.mailer = mailer;
     }
 
     /**
      * Method 'getRecipient'
      * 
-     * @return String
+     * @return User
      */
-    public String getRecipient() {
+    public User getRecipient() {
 	return recipient;
     }
 
@@ -101,7 +101,7 @@ public class Msg implements Serializable {
      * 
      * @param recipient
      */
-    public void setRecipient(String recipient) {
+    public void setRecipient(User recipient) {
 	this.recipient = recipient;
     }
 
@@ -144,9 +144,9 @@ public class Msg implements Serializable {
     /**
      * Method 'getStatusMsg'
      * 
-     * @return String
+     * @return MsgStatus
      */
-    public String getStatusMsg() {
+    public MsgStatus getStatusMsg() {
 	return statusMsg;
     }
 
@@ -155,16 +155,16 @@ public class Msg implements Serializable {
      * 
      * @param statusMsg
      */
-    public void setStatusMsg(String statusMsg) {
+    public void setStatusMsg(MsgStatus statusMsg) {
 	this.statusMsg = statusMsg;
     }
 
     /**
      * Method 'getTypeMsg'
      * 
-     * @return String
+     * @return MsgType
      */
-    public String getTypeMsg() {
+    public MsgType getTypeMsg() {
 	return typeMsg;
     }
 
@@ -173,7 +173,7 @@ public class Msg implements Serializable {
      * 
      * @param typeMsg
      */
-    public void setTypeMsg(String typeMsg) {
+    public void setTypeMsg(MsgType typeMsg) {
 	this.typeMsg = typeMsg;
     }
 
@@ -317,12 +317,12 @@ public class Msg implements Serializable {
 	StringBuffer ret = new StringBuffer();
 	ret.append("ua.bionichill.socialnetwork.dto.Msg: ");
 	ret.append("idMsg=" + idMsg);
-	ret.append(", mailer=" + mailer);
-	ret.append(", recipient=" + recipient);
+	ret.append(", mailer=" + mailer.toString());
+	ret.append(", recipient=" + recipient.toString());
 	ret.append(", headMsg=" + headMsg);
 	ret.append(", bodyMsg=" + bodyMsg);
-	ret.append(", statusMsg=" + statusMsg);
-	ret.append(", typeMsg=" + typeMsg);
+	ret.append(", statusMsg=" + statusMsg.toString());
+	ret.append(", typeMsg=" + typeMsg.toString());
 	ret.append(", sendOffDate=" + sendOffDate);
 	return ret.toString();
     }
