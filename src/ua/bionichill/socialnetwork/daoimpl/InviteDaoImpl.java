@@ -26,77 +26,76 @@ public class InviteDaoImpl extends AbstractDAO implements InviteDao {
      * this attribute and will be used by all calls to this DAO, otherwise a new
      * Connection will be allocated for each operation.
      */
-    protected java.sql.Connection userConn;
+    private java.sql.Connection userConn;
 
-    protected static final Logger logger = Logger
-	    .getLogger(InviteDaoImpl.class);
+    private static final Logger logger = Logger.getLogger(InviteDaoImpl.class);
 
     /**
      * All finder methods in this class use this SELECT constant to build their
      * queries
      */
-    protected final String SQL_SELECT = "SELECT idinvite, inviter, invitee, res, invitedate FROM "
+    private final String SQL_SELECT = "SELECT idinvite, inviter, invitee, res, invitedate FROM "
 	    + getTableName() + "";
 
     /**
      * Finder methods will pass this value to the JDBC setMaxRows method
      */
-    protected int maxRows;
+    private int maxRows;
 
     /**
      * SQL INSERT statement for this table
      */
-    protected final String SQL_INSERT = "INSERT INTO "
+    private final String SQL_INSERT = "INSERT INTO "
 	    + getTableName()
 	    + " ( idinvite, inviter, invitee, res, invitedate ) VALUES ( ?, ?, ?, ?, ? )";
 
     /**
      * SQL UPDATE statement for this table
      */
-    protected final String SQL_UPDATE = "UPDATE "
+    private final String SQL_UPDATE = "UPDATE "
 	    + getTableName()
 	    + " SET idinvite = ?, inviter = ?, invitee = ?, res = ?, invitedate = ? WHERE idinvite = ?";
 
     /**
      * SQL DELETE statement for this table
      */
-    protected final String SQL_DELETE = "DELETE FROM " + getTableName()
+    private final String SQL_DELETE = "DELETE FROM " + getTableName()
 	    + " WHERE idinvite = ?";
 
     /**
      * Index of column idinvite
      */
-    protected static final int COLUMN_ID_INVITE = 1;
+    private static final int COLUMN_ID_INVITE = 1;
 
     /**
      * Index of column inviter
      */
-    protected static final int COLUMN_INVITER = 2;
+    private static final int COLUMN_INVITER = 2;
 
     /**
      * Index of column invitee
      */
-    protected static final int COLUMN_INVITEE = 3;
+    private static final int COLUMN_INVITEE = 3;
 
     /**
      * Index of column res
      */
-    protected static final int COLUMN_RES = 4;
+    private static final int COLUMN_RES = 4;
 
     /**
      * Index of column invitedate
      */
-    protected static final int COLUMN_INVITE_DATE = 5;
+    private static final int COLUMN_INVITE_DATE = 5;
 
     /**
      * Number of columns
      */
-    protected static final int NUMBER_OF_COLUMNS = 5;
+    private static final int NUMBER_OF_COLUMNS = 5;
 
     /**
      * Index of primary-key column idinvite
      */
-    protected static final int PK_COLUMN_ID_INVITE = 1;
+    private static final int PK_COLUMN_ID_INVITE = 1;
 
     /**
      * Inserts a new row in the invite table.
@@ -410,7 +409,7 @@ public class InviteDaoImpl extends AbstractDAO implements InviteDao {
     /**
      * Fetches a single row from the result set
      */
-    protected Invite fetchSingleResult(ResultSet rs) throws SQLException {
+    private Invite fetchSingleResult(ResultSet rs) throws SQLException {
 	if (rs.next()) {
 	    Invite dto = new Invite();
 	    populateDto(dto, rs);
@@ -424,7 +423,7 @@ public class InviteDaoImpl extends AbstractDAO implements InviteDao {
     /**
      * Fetches multiple rows from the result set
      */
-    protected Invite[] fetchMultiResults(ResultSet rs) throws SQLException {
+    private Invite[] fetchMultiResults(ResultSet rs) throws SQLException {
 	Collection resultList = new ArrayList();
 	while (rs.next()) {
 	    Invite dto = new Invite();
@@ -440,7 +439,7 @@ public class InviteDaoImpl extends AbstractDAO implements InviteDao {
     /**
      * Populates a DTO with data from a ResultSet
      */
-    protected void populateDto(Invite dto, ResultSet rs) throws SQLException {
+    private void populateDto(Invite dto, ResultSet rs) throws SQLException {
 	dto.setIdInvite(new Integer(rs.getInt(COLUMN_ID_INVITE)));
 	try {
 	    dto.setInviter(new UserDaoImpl().findByPrimaryKey(rs
@@ -469,7 +468,7 @@ public class InviteDaoImpl extends AbstractDAO implements InviteDao {
     /**
      * Resets the modified attributes in the DTO
      */
-    protected void reset(Invite dto) {
+    private void reset(Invite dto) {
     }
 
     /**

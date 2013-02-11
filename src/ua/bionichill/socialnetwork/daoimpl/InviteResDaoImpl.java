@@ -22,55 +22,55 @@ public class InviteResDaoImpl extends AbstractDAO implements InviteResDao {
      * this attribute and will be used by all calls to this DAO, otherwise a new
      * Connection will be allocated for each operation.
      */
-    protected java.sql.Connection userConn;
+    private java.sql.Connection userConn;
 
-    protected static final Logger logger = Logger
+    private static final Logger logger = Logger
 	    .getLogger(InviteResDaoImpl.class);
 
     /**
      * All finder methods in this class use this SELECT constant to build their
      * queries
      */
-    protected final String SQL_SELECT = "SELECT inviteres FROM "
-	    + getTableName() + "";
+    private final String SQL_SELECT = "SELECT inviteres FROM " + getTableName()
+	    + "";
 
     /**
      * Finder methods will pass this value to the JDBC setMaxRows method
      */
-    protected int maxRows;
+    private int maxRows;
 
     /**
      * SQL INSERT statement for this table
      */
-    protected final String SQL_INSERT = "INSERT INTO " + getTableName()
+    private final String SQL_INSERT = "INSERT INTO " + getTableName()
 	    + " ( inviteres ) VALUES ( ? )";
 
     /**
      * SQL UPDATE statement for this table
      */
-    protected final String SQL_UPDATE = "UPDATE " + getTableName()
+    private final String SQL_UPDATE = "UPDATE " + getTableName()
 	    + " SET inviteres = ? WHERE inviteres = ?";
 
     /**
      * SQL DELETE statement for this table
      */
-    protected final String SQL_DELETE = "DELETE FROM " + getTableName()
+    private final String SQL_DELETE = "DELETE FROM " + getTableName()
 	    + " WHERE inviteres = ?";
 
     /**
      * Index of column inviteres
      */
-    protected static final int COLUMN_INVITE_RES = 1;
+    private static final int COLUMN_INVITE_RES = 1;
 
     /**
      * Number of columns
      */
-    protected static final int NUMBER_OF_COLUMNS = 1;
+    private static final int NUMBER_OF_COLUMNS = 1;
 
     /**
      * Index of primary-key column inviteres
      */
-    protected static final int PK_COLUMN_INVITE_RES = 1;
+    private static final int PK_COLUMN_INVITE_RES = 1;
 
     /**
      * Inserts a new row in the inviteres table.
@@ -280,7 +280,7 @@ public class InviteResDaoImpl extends AbstractDAO implements InviteResDao {
     /**
      * Fetches a single row from the result set
      */
-    protected InviteRes fetchSingleResult(ResultSet rs) throws SQLException {
+    private InviteRes fetchSingleResult(ResultSet rs) throws SQLException {
 	if (rs.next()) {
 	    InviteRes dto = new InviteRes();
 	    populateDto(dto, rs);
@@ -294,7 +294,7 @@ public class InviteResDaoImpl extends AbstractDAO implements InviteResDao {
     /**
      * Fetches multiple rows from the result set
      */
-    protected InviteRes[] fetchMultiResults(ResultSet rs) throws SQLException {
+    private InviteRes[] fetchMultiResults(ResultSet rs) throws SQLException {
 	Collection resultList = new ArrayList();
 	while (rs.next()) {
 	    InviteRes dto = new InviteRes();
@@ -310,14 +310,14 @@ public class InviteResDaoImpl extends AbstractDAO implements InviteResDao {
     /**
      * Populates a DTO with data from a ResultSet
      */
-    protected void populateDto(InviteRes dto, ResultSet rs) throws SQLException {
+    private void populateDto(InviteRes dto, ResultSet rs) throws SQLException {
 	dto.setInviteRes(rs.getString(COLUMN_INVITE_RES));
     }
 
     /**
      * Resets the modified attributes in the DTO
      */
-    protected void reset(InviteRes dto) {
+    private void reset(InviteRes dto) {
     }
 
     /**

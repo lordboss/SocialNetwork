@@ -26,81 +26,81 @@ public class UserDaoImpl extends AbstractDAO implements UserDao {
      * this attribute and will be used by all calls to this DAO, otherwise a new
      * Connection will be allocated for each operation.
      */
-    protected java.sql.Connection userConn;
+    private java.sql.Connection userConn;
 
-    protected static final Logger logger = Logger.getLogger(UserDaoImpl.class);
+    private static final Logger logger = Logger.getLogger(UserDaoImpl.class);
 
     /**
      * All finder methods in this class use this SELECT constant to build their
      * queries
      */
-    protected final String SQL_SELECT = "SELECT email, passw, typeu, statusu, profileid, registrdate FROM "
+    private final String SQL_SELECT = "SELECT email, passw, typeu, statusu, profileid, registrdate FROM "
 	    + getTableName() + "";
 
     /**
      * Finder methods will pass this value to the JDBC setMaxRows method
      */
-    protected int maxRows;
+    private int maxRows;
 
     /**
      * SQL INSERT statement for this table
      */
-    protected final String SQL_INSERT = "INSERT INTO "
+    private final String SQL_INSERT = "INSERT INTO "
 	    + getTableName()
 	    + " ( email, passw, typeu, statusu, profileid, registrdate ) VALUES ( ?, ?, ?, ?, ?, ? )";
 
     /**
      * SQL UPDATE statement for this table
      */
-    protected final String SQL_UPDATE = "UPDATE "
+    private final String SQL_UPDATE = "UPDATE "
 	    + getTableName()
 	    + " SET email = ?, passw = ?, typeu = ?, statusu = ?, profileid = ?, registrdate = ? WHERE email = ?";
 
     /**
      * SQL DELETE statement for this table
      */
-    protected final String SQL_DELETE = "DELETE FROM " + getTableName()
+    private final String SQL_DELETE = "DELETE FROM " + getTableName()
 	    + " WHERE email = ?";
 
     /**
      * Index of column email
      */
-    protected static final int COLUMN_EMAIL = 1;
+    private static final int COLUMN_EMAIL = 1;
 
     /**
      * Index of column passw
      */
-    protected static final int COLUMN_PASSW = 2;
+    private static final int COLUMN_PASSW = 2;
 
     /**
      * Index of column typeu
      */
-    protected static final int COLUMN_TYPE_U = 3;
+    private static final int COLUMN_TYPE_U = 3;
 
     /**
      * Index of column statusu
      */
-    protected static final int COLUMN_STATUS_U = 4;
+    private static final int COLUMN_STATUS_U = 4;
 
     /**
      * Index of column profileid
      */
-    protected static final int COLUMN_PROFILE_ID = 5;
+    private static final int COLUMN_PROFILE_ID = 5;
 
     /**
      * Index of column registrdate
      */
-    protected static final int COLUMN_REGISTR_DATE = 6;
+    private static final int COLUMN_REGISTR_DATE = 6;
 
     /**
      * Number of columns
      */
-    protected static final int NUMBER_OF_COLUMNS = 6;
+    private static final int NUMBER_OF_COLUMNS = 6;
 
     /**
      * Index of primary-key column email
      */
-    protected static final int PK_COLUMN_EMAIL = 1;
+    private static final int PK_COLUMN_EMAIL = 1;
 
     /**
      * Inserts a new row in the user table.
@@ -408,7 +408,7 @@ public class UserDaoImpl extends AbstractDAO implements UserDao {
     /**
      * Fetches a single row from the result set
      */
-    protected User fetchSingleResult(ResultSet rs) throws SQLException {
+    private User fetchSingleResult(ResultSet rs) throws SQLException {
 	if (rs.next()) {
 	    User dto = new User();
 	    populateDto(dto, rs);
@@ -422,7 +422,7 @@ public class UserDaoImpl extends AbstractDAO implements UserDao {
     /**
      * Fetches multiple rows from the result set
      */
-    protected User[] fetchMultiResults(ResultSet rs) throws SQLException {
+    private User[] fetchMultiResults(ResultSet rs) throws SQLException {
 	Collection resultList = new ArrayList();
 	while (rs.next()) {
 	    User dto = new User();
@@ -438,7 +438,7 @@ public class UserDaoImpl extends AbstractDAO implements UserDao {
     /**
      * Populates a DTO with data from a ResultSet
      */
-    protected void populateDto(User dto, ResultSet rs) throws SQLException {
+    private void populateDto(User dto, ResultSet rs) throws SQLException {
 	dto.setEmail(rs.getString(COLUMN_EMAIL));
 	dto.setPassw(rs.getString(COLUMN_PASSW));
 	try {
@@ -468,7 +468,7 @@ public class UserDaoImpl extends AbstractDAO implements UserDao {
     /**
      * Resets the modified attributes in the DTO
      */
-    protected void reset(User dto) {
+    private void reset(User dto) {
     }
 
     /**

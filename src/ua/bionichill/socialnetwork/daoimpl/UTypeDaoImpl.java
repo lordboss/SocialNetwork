@@ -22,54 +22,54 @@ public class UTypeDaoImpl extends AbstractDAO implements UTypeDao {
      * this attribute and will be used by all calls to this DAO, otherwise a new
      * Connection will be allocated for each operation.
      */
-    protected java.sql.Connection userConn;
+    private java.sql.Connection userConn;
 
-    protected static final Logger logger = Logger.getLogger(UTypeDaoImpl.class);
+    private static final Logger logger = Logger.getLogger(UTypeDaoImpl.class);
 
     /**
      * All finder methods in this class use this SELECT constant to build their
      * queries
      */
-    protected final String SQL_SELECT = "SELECT utype FROM " + getTableName()
+    private final String SQL_SELECT = "SELECT utype FROM " + getTableName()
 	    + "";
 
     /**
      * Finder methods will pass this value to the JDBC setMaxRows method
      */
-    protected int maxRows;
+    private int maxRows;
 
     /**
      * SQL INSERT statement for this table
      */
-    protected final String SQL_INSERT = "INSERT INTO " + getTableName()
+    private final String SQL_INSERT = "INSERT INTO " + getTableName()
 	    + " ( utype ) VALUES ( ? )";
 
     /**
      * SQL UPDATE statement for this table
      */
-    protected final String SQL_UPDATE = "UPDATE " + getTableName()
+    private final String SQL_UPDATE = "UPDATE " + getTableName()
 	    + " SET utype = ? WHERE utype = ?";
 
     /**
      * SQL DELETE statement for this table
      */
-    protected final String SQL_DELETE = "DELETE FROM " + getTableName()
+    private final String SQL_DELETE = "DELETE FROM " + getTableName()
 	    + " WHERE utype = ?";
 
     /**
      * Index of column utype
      */
-    protected static final int COLUMN_U_TYPE = 1;
+    private static final int COLUMN_U_TYPE = 1;
 
     /**
      * Number of columns
      */
-    protected static final int NUMBER_OF_COLUMNS = 1;
+    private static final int NUMBER_OF_COLUMNS = 1;
 
     /**
      * Index of primary-key column utype
      */
-    protected static final int PK_COLUMN_U_TYPE = 1;
+    private static final int PK_COLUMN_U_TYPE = 1;
 
     /**
      * Inserts a new row in the utype table.
@@ -274,7 +274,7 @@ public class UTypeDaoImpl extends AbstractDAO implements UTypeDao {
     /**
      * Fetches a single row from the result set
      */
-    protected UType fetchSingleResult(ResultSet rs) throws SQLException {
+    private UType fetchSingleResult(ResultSet rs) throws SQLException {
 	if (rs.next()) {
 	    UType dto = new UType();
 	    populateDto(dto, rs);
@@ -288,7 +288,7 @@ public class UTypeDaoImpl extends AbstractDAO implements UTypeDao {
     /**
      * Fetches multiple rows from the result set
      */
-    protected UType[] fetchMultiResults(ResultSet rs) throws SQLException {
+    private UType[] fetchMultiResults(ResultSet rs) throws SQLException {
 	Collection resultList = new ArrayList();
 	while (rs.next()) {
 	    UType dto = new UType();
@@ -304,14 +304,14 @@ public class UTypeDaoImpl extends AbstractDAO implements UTypeDao {
     /**
      * Populates a DTO with data from a ResultSet
      */
-    protected void populateDto(UType dto, ResultSet rs) throws SQLException {
+    private void populateDto(UType dto, ResultSet rs) throws SQLException {
 	dto.setUType(rs.getString(COLUMN_U_TYPE));
     }
 
     /**
      * Resets the modified attributes in the DTO
      */
-    protected void reset(UType dto) {
+    private void reset(UType dto) {
     }
 
     /**

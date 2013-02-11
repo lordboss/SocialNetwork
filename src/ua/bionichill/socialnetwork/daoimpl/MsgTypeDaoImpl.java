@@ -22,55 +22,54 @@ public class MsgTypeDaoImpl extends AbstractDAO implements MsgTypeDao {
      * this attribute and will be used by all calls to this DAO, otherwise a new
      * Connection will be allocated for each operation.
      */
-    protected java.sql.Connection userConn;
+    private java.sql.Connection userConn;
 
-    protected static final Logger logger = Logger
-	    .getLogger(MsgTypeDaoImpl.class);
+    private static final Logger logger = Logger.getLogger(MsgTypeDaoImpl.class);
 
     /**
      * All finder methods in this class use this SELECT constant to build their
      * queries
      */
-    protected final String SQL_SELECT = "SELECT msgtype FROM " + getTableName()
+    private final String SQL_SELECT = "SELECT msgtype FROM " + getTableName()
 	    + "";
 
     /**
      * Finder methods will pass this value to the JDBC setMaxRows method
      */
-    protected int maxRows;
+    private int maxRows;
 
     /**
      * SQL INSERT statement for this table
      */
-    protected final String SQL_INSERT = "INSERT INTO " + getTableName()
+    private final String SQL_INSERT = "INSERT INTO " + getTableName()
 	    + " ( msgtype ) VALUES ( ? )";
 
     /**
      * SQL UPDATE statement for this table
      */
-    protected final String SQL_UPDATE = "UPDATE " + getTableName()
+    private final String SQL_UPDATE = "UPDATE " + getTableName()
 	    + " SET msgtype = ? WHERE msgtype = ?";
 
     /**
      * SQL DELETE statement for this table
      */
-    protected final String SQL_DELETE = "DELETE FROM " + getTableName()
+    private final String SQL_DELETE = "DELETE FROM " + getTableName()
 	    + " WHERE msgtype = ?";
 
     /**
      * Index of column msgtype
      */
-    protected static final int COLUMN_MSG_TYPE = 1;
+    private static final int COLUMN_MSG_TYPE = 1;
 
     /**
      * Number of columns
      */
-    protected static final int NUMBER_OF_COLUMNS = 1;
+    private static final int NUMBER_OF_COLUMNS = 1;
 
     /**
      * Index of primary-key column msgtype
      */
-    protected static final int PK_COLUMN_MSG_TYPE = 1;
+    private static final int PK_COLUMN_MSG_TYPE = 1;
 
     /**
      * Inserts a new row in the msgtype table.
@@ -277,7 +276,7 @@ public class MsgTypeDaoImpl extends AbstractDAO implements MsgTypeDao {
     /**
      * Fetches a single row from the result set
      */
-    protected MsgType fetchSingleResult(ResultSet rs) throws SQLException {
+    private MsgType fetchSingleResult(ResultSet rs) throws SQLException {
 	if (rs.next()) {
 	    MsgType dto = new MsgType();
 	    populateDto(dto, rs);
@@ -291,7 +290,7 @@ public class MsgTypeDaoImpl extends AbstractDAO implements MsgTypeDao {
     /**
      * Fetches multiple rows from the result set
      */
-    protected MsgType[] fetchMultiResults(ResultSet rs) throws SQLException {
+    private MsgType[] fetchMultiResults(ResultSet rs) throws SQLException {
 	Collection resultList = new ArrayList();
 	while (rs.next()) {
 	    MsgType dto = new MsgType();
@@ -307,14 +306,14 @@ public class MsgTypeDaoImpl extends AbstractDAO implements MsgTypeDao {
     /**
      * Populates a DTO with data from a ResultSet
      */
-    protected void populateDto(MsgType dto, ResultSet rs) throws SQLException {
+    private void populateDto(MsgType dto, ResultSet rs) throws SQLException {
 	dto.setMsgType(rs.getString(COLUMN_MSG_TYPE));
     }
 
     /**
      * Resets the modified attributes in the DTO
      */
-    protected void reset(MsgType dto) {
+    private void reset(MsgType dto) {
     }
 
     /**

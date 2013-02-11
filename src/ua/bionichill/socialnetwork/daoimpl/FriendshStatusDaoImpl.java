@@ -23,55 +23,55 @@ public class FriendshStatusDaoImpl extends AbstractDAO implements
      * this attribute and will be used by all calls to this DAO, otherwise a new
      * Connection will be allocated for each operation.
      */
-    protected java.sql.Connection userConn;
+    private java.sql.Connection userConn;
 
-    protected static final Logger logger = Logger
+    private static final Logger logger = Logger
 	    .getLogger(FriendshStatusDaoImpl.class);
 
     /**
      * All finder methods in this class use this SELECT constant to build their
      * queries
      */
-    protected final String SQL_SELECT = "SELECT friendshstatus FROM "
+    private final String SQL_SELECT = "SELECT friendshstatus FROM "
 	    + getTableName() + "";
 
     /**
      * Finder methods will pass this value to the JDBC setMaxRows method
      */
-    protected int maxRows;
+    private int maxRows;
 
     /**
      * SQL INSERT statement for this table
      */
-    protected final String SQL_INSERT = "INSERT INTO " + getTableName()
+    private final String SQL_INSERT = "INSERT INTO " + getTableName()
 	    + " ( friendshstatus ) VALUES ( ? )";
 
     /**
      * SQL UPDATE statement for this table
      */
-    protected final String SQL_UPDATE = "UPDATE " + getTableName()
+    private final String SQL_UPDATE = "UPDATE " + getTableName()
 	    + " SET friendshstatus = ? WHERE friendshstatus = ?";
 
     /**
      * SQL DELETE statement for this table
      */
-    protected final String SQL_DELETE = "DELETE FROM " + getTableName()
+    private final String SQL_DELETE = "DELETE FROM " + getTableName()
 	    + " WHERE friendshstatus = ?";
 
     /**
      * Index of column friendshstatus
      */
-    protected static final int COLUMN_FRIENDSH_STATUS = 1;
+    private static final int COLUMN_FRIENDSH_STATUS = 1;
 
     /**
      * Number of columns
      */
-    protected static final int NUMBER_OF_COLUMNS = 1;
+    private static final int NUMBER_OF_COLUMNS = 1;
 
     /**
      * Index of primary-key column friendshstatus
      */
-    protected static final int PK_COLUMN_FRIENDSH_STATUS = 1;
+    private static final int PK_COLUMN_FRIENDSH_STATUS = 1;
 
     /**
      * Inserts a new row in the friendshstatus table.
@@ -287,8 +287,7 @@ public class FriendshStatusDaoImpl extends AbstractDAO implements
     /**
      * Fetches a single row from the result set
      */
-    protected FriendshStatus fetchSingleResult(ResultSet rs)
-	    throws SQLException {
+    private FriendshStatus fetchSingleResult(ResultSet rs) throws SQLException {
 	if (rs.next()) {
 	    FriendshStatus dto = new FriendshStatus();
 	    populateDto(dto, rs);
@@ -302,7 +301,7 @@ public class FriendshStatusDaoImpl extends AbstractDAO implements
     /**
      * Fetches multiple rows from the result set
      */
-    protected FriendshStatus[] fetchMultiResults(ResultSet rs)
+    private FriendshStatus[] fetchMultiResults(ResultSet rs)
 	    throws SQLException {
 	Collection resultList = new ArrayList();
 	while (rs.next()) {
@@ -319,7 +318,7 @@ public class FriendshStatusDaoImpl extends AbstractDAO implements
     /**
      * Populates a DTO with data from a ResultSet
      */
-    protected void populateDto(FriendshStatus dto, ResultSet rs)
+    private void populateDto(FriendshStatus dto, ResultSet rs)
 	    throws SQLException {
 	dto.setFriendshStatus(rs.getString(COLUMN_FRIENDSH_STATUS));
     }
@@ -327,7 +326,7 @@ public class FriendshStatusDaoImpl extends AbstractDAO implements
     /**
      * Resets the modified attributes in the DTO
      */
-    protected void reset(FriendshStatus dto) {
+    private void reset(FriendshStatus dto) {
     }
 
     /**

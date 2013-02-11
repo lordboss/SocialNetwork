@@ -22,55 +22,55 @@ public class MsgStatusDaoImpl extends AbstractDAO implements MsgStatusDao {
      * this attribute and will be used by all calls to this DAO, otherwise a new
      * Connection will be allocated for each operation.
      */
-    protected java.sql.Connection userConn;
+    private java.sql.Connection userConn;
 
-    protected static final Logger logger = Logger
+    private static final Logger logger = Logger
 	    .getLogger(MsgStatusDaoImpl.class);
 
     /**
      * All finder methods in this class use this SELECT constant to build their
      * queries
      */
-    protected final String SQL_SELECT = "SELECT msgstatus FROM "
-	    + getTableName() + "";
+    private final String SQL_SELECT = "SELECT msgstatus FROM " + getTableName()
+	    + "";
 
     /**
      * Finder methods will pass this value to the JDBC setMaxRows method
      */
-    protected int maxRows;
+    private int maxRows;
 
     /**
      * SQL INSERT statement for this table
      */
-    protected final String SQL_INSERT = "INSERT INTO " + getTableName()
+    private final String SQL_INSERT = "INSERT INTO " + getTableName()
 	    + " ( msgstatus ) VALUES ( ? )";
 
     /**
      * SQL UPDATE statement for this table
      */
-    protected final String SQL_UPDATE = "UPDATE " + getTableName()
+    private final String SQL_UPDATE = "UPDATE " + getTableName()
 	    + " SET msgstatus = ? WHERE msgstatus = ?";
 
     /**
      * SQL DELETE statement for this table
      */
-    protected final String SQL_DELETE = "DELETE FROM " + getTableName()
+    private final String SQL_DELETE = "DELETE FROM " + getTableName()
 	    + " WHERE msgstatus = ?";
 
     /**
      * Index of column msgstatus
      */
-    protected static final int COLUMN_MSG_STATUS = 1;
+    private static final int COLUMN_MSG_STATUS = 1;
 
     /**
      * Number of columns
      */
-    protected static final int NUMBER_OF_COLUMNS = 1;
+    private static final int NUMBER_OF_COLUMNS = 1;
 
     /**
      * Index of primary-key column msgstatus
      */
-    protected static final int PK_COLUMN_MSG_STATUS = 1;
+    private static final int PK_COLUMN_MSG_STATUS = 1;
 
     /**
      * Inserts a new row in the msgstatus table.
@@ -280,7 +280,7 @@ public class MsgStatusDaoImpl extends AbstractDAO implements MsgStatusDao {
     /**
      * Fetches a single row from the result set
      */
-    protected MsgStatus fetchSingleResult(ResultSet rs) throws SQLException {
+    private MsgStatus fetchSingleResult(ResultSet rs) throws SQLException {
 	if (rs.next()) {
 	    MsgStatus dto = new MsgStatus();
 	    populateDto(dto, rs);
@@ -294,7 +294,7 @@ public class MsgStatusDaoImpl extends AbstractDAO implements MsgStatusDao {
     /**
      * Fetches multiple rows from the result set
      */
-    protected MsgStatus[] fetchMultiResults(ResultSet rs) throws SQLException {
+    private MsgStatus[] fetchMultiResults(ResultSet rs) throws SQLException {
 	Collection resultList = new ArrayList();
 	while (rs.next()) {
 	    MsgStatus dto = new MsgStatus();
@@ -310,14 +310,14 @@ public class MsgStatusDaoImpl extends AbstractDAO implements MsgStatusDao {
     /**
      * Populates a DTO with data from a ResultSet
      */
-    protected void populateDto(MsgStatus dto, ResultSet rs) throws SQLException {
+    private void populateDto(MsgStatus dto, ResultSet rs) throws SQLException {
 	dto.setMsgStatus(rs.getString(COLUMN_MSG_STATUS));
     }
 
     /**
      * Resets the modified attributes in the DTO
      */
-    protected void reset(MsgStatus dto) {
+    private void reset(MsgStatus dto) {
     }
 
     /**

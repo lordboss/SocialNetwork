@@ -27,82 +27,82 @@ public class FriendshDaoImpl extends AbstractDAO implements FriendshDao {
      * this attribute and will be used by all calls to this DAO, otherwise a new
      * Connection will be allocated for each operation.
      */
-    protected java.sql.Connection userConn;
+    private java.sql.Connection userConn;
 
-    protected static final Logger logger = Logger
+    private static final Logger logger = Logger
 	    .getLogger(FriendshDaoImpl.class);
 
     /**
      * All finder methods in this class use this SELECT constant to build their
      * queries
      */
-    protected final String SQL_SELECT = "SELECT idfriendsh, friendfrom, friendto, statusfriendsh, inviteid, friendshdate FROM "
+    private final String SQL_SELECT = "SELECT idfriendsh, friendfrom, friendto, statusfriendsh, inviteid, friendshdate FROM "
 	    + getTableName() + "";
 
     /**
      * Finder methods will pass this value to the JDBC setMaxRows method
      */
-    protected int maxRows;
+    private int maxRows;
 
     /**
      * SQL INSERT statement for this table
      */
-    protected final String SQL_INSERT = "INSERT INTO "
+    private final String SQL_INSERT = "INSERT INTO "
 	    + getTableName()
 	    + " ( idfriendsh, friendfrom, friendto, statusfriendsh, inviteid, friendshdate ) VALUES ( ?, ?, ?, ?, ?, ? )";
 
     /**
      * SQL UPDATE statement for this table
      */
-    protected final String SQL_UPDATE = "UPDATE "
+    private final String SQL_UPDATE = "UPDATE "
 	    + getTableName()
 	    + " SET idfriendsh = ?, friendfrom = ?, friendto = ?, statusfriendsh = ?, inviteid = ?, friendshdate = ? WHERE idfriendsh = ?";
 
     /**
      * SQL DELETE statement for this table
      */
-    protected final String SQL_DELETE = "DELETE FROM " + getTableName()
+    private final String SQL_DELETE = "DELETE FROM " + getTableName()
 	    + " WHERE idfriendsh = ?";
 
     /**
      * Index of column idfriendsh
      */
-    protected static final int COLUMN_ID_FRIENDSH = 1;
+    private static final int COLUMN_ID_FRIENDSH = 1;
 
     /**
      * Index of column friendfrom
      */
-    protected static final int COLUMN_FRIEND_FROM = 2;
+    private static final int COLUMN_FRIEND_FROM = 2;
 
     /**
      * Index of column friendto
      */
-    protected static final int COLUMN_FRIEND_TO = 3;
+    private static final int COLUMN_FRIEND_TO = 3;
 
     /**
      * Index of column statusfriendsh
      */
-    protected static final int COLUMN_STATUS_FRIENDSH = 4;
+    private static final int COLUMN_STATUS_FRIENDSH = 4;
 
     /**
      * Index of column inviteid
      */
-    protected static final int COLUMN_INVITE_ID = 5;
+    private static final int COLUMN_INVITE_ID = 5;
 
     /**
      * Index of column friendshdate
      */
-    protected static final int COLUMN_FRIENDSH_DATE = 6;
+    private static final int COLUMN_FRIENDSH_DATE = 6;
 
     /**
      * Number of columns
      */
-    protected static final int NUMBER_OF_COLUMNS = 6;
+    private static final int NUMBER_OF_COLUMNS = 6;
 
     /**
      * Index of primary-key column idfriendsh
      */
-    protected static final int PK_COLUMN_ID_FRIENDSH = 1;
+    private static final int PK_COLUMN_ID_FRIENDSH = 1;
 
     /**
      * Inserts a new row in the friendsh table.
@@ -455,7 +455,7 @@ public class FriendshDaoImpl extends AbstractDAO implements FriendshDao {
     /**
      * Fetches a single row from the result set
      */
-    protected Friendsh fetchSingleResult(ResultSet rs) throws SQLException {
+    private Friendsh fetchSingleResult(ResultSet rs) throws SQLException {
 	if (rs.next()) {
 	    Friendsh dto = new Friendsh();
 	    populateDto(dto, rs);
@@ -469,7 +469,7 @@ public class FriendshDaoImpl extends AbstractDAO implements FriendshDao {
     /**
      * Fetches multiple rows from the result set
      */
-    protected Friendsh[] fetchMultiResults(ResultSet rs) throws SQLException {
+    private Friendsh[] fetchMultiResults(ResultSet rs) throws SQLException {
 	Collection resultList = new ArrayList();
 	while (rs.next()) {
 	    Friendsh dto = new Friendsh();
@@ -485,7 +485,7 @@ public class FriendshDaoImpl extends AbstractDAO implements FriendshDao {
     /**
      * Populates a DTO with data from a ResultSet
      */
-    protected void populateDto(Friendsh dto, ResultSet rs) throws SQLException {
+    private void populateDto(Friendsh dto, ResultSet rs) throws SQLException {
 	dto.setIdFriendsh(new Integer(rs.getInt(COLUMN_ID_FRIENDSH)));
 	try {
 	    dto.setFriendFrom(new UserDaoImpl().findByPrimaryKey(rs
@@ -521,7 +521,7 @@ public class FriendshDaoImpl extends AbstractDAO implements FriendshDao {
     /**
      * Resets the modified attributes in the DTO
      */
-    protected void reset(Friendsh dto) {
+    private void reset(Friendsh dto) {
     }
 
     /**

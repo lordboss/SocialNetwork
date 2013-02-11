@@ -22,55 +22,54 @@ public class UStatusDaoImpl extends AbstractDAO implements UStatusDao {
      * this attribute and will be used by all calls to this DAO, otherwise a new
      * Connection will be allocated for each operation.
      */
-    protected java.sql.Connection userConn;
+    private java.sql.Connection userConn;
 
-    protected static final Logger logger = Logger
-	    .getLogger(UStatusDaoImpl.class);
+    private static final Logger logger = Logger.getLogger(UStatusDaoImpl.class);
 
     /**
      * All finder methods in this class use this SELECT constant to build their
      * queries
      */
-    protected final String SQL_SELECT = "SELECT ustatus FROM " + getTableName()
+    private final String SQL_SELECT = "SELECT ustatus FROM " + getTableName()
 	    + "";
 
     /**
      * Finder methods will pass this value to the JDBC setMaxRows method
      */
-    protected int maxRows;
+    private int maxRows;
 
     /**
      * SQL INSERT statement for this table
      */
-    protected final String SQL_INSERT = "INSERT INTO " + getTableName()
+    private final String SQL_INSERT = "INSERT INTO " + getTableName()
 	    + " ( ustatus ) VALUES ( ? )";
 
     /**
      * SQL UPDATE statement for this table
      */
-    protected final String SQL_UPDATE = "UPDATE " + getTableName()
+    private final String SQL_UPDATE = "UPDATE " + getTableName()
 	    + " SET ustatus = ? WHERE ustatus = ?";
 
     /**
      * SQL DELETE statement for this table
      */
-    protected final String SQL_DELETE = "DELETE FROM " + getTableName()
+    private final String SQL_DELETE = "DELETE FROM " + getTableName()
 	    + " WHERE ustatus = ?";
 
     /**
      * Index of column ustatus
      */
-    protected static final int COLUMN_U_STATUS = 1;
+    private static final int COLUMN_U_STATUS = 1;
 
     /**
      * Number of columns
      */
-    protected static final int NUMBER_OF_COLUMNS = 1;
+    private static final int NUMBER_OF_COLUMNS = 1;
 
     /**
      * Index of primary-key column ustatus
      */
-    protected static final int PK_COLUMN_U_STATUS = 1;
+    private static final int PK_COLUMN_U_STATUS = 1;
 
     /**
      * Inserts a new row in the ustatus table.
@@ -277,7 +276,7 @@ public class UStatusDaoImpl extends AbstractDAO implements UStatusDao {
     /**
      * Fetches a single row from the result set
      */
-    protected UStatus fetchSingleResult(ResultSet rs) throws SQLException {
+    private UStatus fetchSingleResult(ResultSet rs) throws SQLException {
 	if (rs.next()) {
 	    UStatus dto = new UStatus();
 	    populateDto(dto, rs);
@@ -291,7 +290,7 @@ public class UStatusDaoImpl extends AbstractDAO implements UStatusDao {
     /**
      * Fetches multiple rows from the result set
      */
-    protected UStatus[] fetchMultiResults(ResultSet rs) throws SQLException {
+    private UStatus[] fetchMultiResults(ResultSet rs) throws SQLException {
 	Collection resultList = new ArrayList();
 	while (rs.next()) {
 	    UStatus dto = new UStatus();
@@ -307,14 +306,14 @@ public class UStatusDaoImpl extends AbstractDAO implements UStatusDao {
     /**
      * Populates a DTO with data from a ResultSet
      */
-    protected void populateDto(UStatus dto, ResultSet rs) throws SQLException {
+    private void populateDto(UStatus dto, ResultSet rs) throws SQLException {
 	dto.setUStatus(rs.getString(COLUMN_U_STATUS));
     }
 
     /**
      * Resets the modified attributes in the DTO
      */
-    protected void reset(UStatus dto) {
+    private void reset(UStatus dto) {
     }
 
     /**
