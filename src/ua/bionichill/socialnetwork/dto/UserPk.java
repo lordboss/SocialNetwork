@@ -6,7 +6,7 @@ import java.io.Serializable;
  * This class represents the primary key of the user table.
  */
 public class UserPk implements Serializable {
-    protected String email;
+    private String email;
 
     /**
      * Sets the value of email

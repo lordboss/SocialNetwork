@@ -16,10 +16,10 @@ public class UserDaoSample {
     public static void main(String[] arg) throws Exception {
 	// Uncomment one of the lines below to test the generated code
 
-	// findAll();
+	findAll();
 	// findByProfile(null);
-	// findByUStatus("");
-	// findByUType("");
+	findByUStatus("ACTIVE");
+	findByUType("REGISTERED");
 	// findWhereEmailEquals("");
 	// findWherePasswEquals("");
 	// findWhereTypeUEquals("");
@@ -241,7 +241,7 @@ public class UserDaoSample {
 	buf.append(", ");
 	buf.append(dto.getStatusU());
 	buf.append(", ");
-	buf.append(dto.getProfileId());
+	buf.append(dto.getProfile());
 	buf.append(", ");
 	buf.append(dto.getRegistrDate());
 	System.out.println(buf.toString());

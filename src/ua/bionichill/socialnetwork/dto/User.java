@@ -7,32 +7,32 @@ public class User implements Serializable {
     /**
      * This attribute maps to the column email in the user table.
      */
-    protected String email;
+    private String email;
 
     /**
      * This attribute maps to the column passw in the user table.
      */
-    protected String passw;
+    private String passw;
 
     /**
      * This attribute maps to the column typeu in the user table.
      */
-    protected String typeU;
+    private UType typeU;
 
     /**
      * This attribute maps to the column statusu in the user table.
      */
-    protected String statusU;
+    private UStatus statusU;
 
     /**
      * This attribute maps to the column profileid in the user table.
      */
-    protected Integer profileId;
+    private Profile profile;
 
     /**
      * This attribute maps to the column registrdate in the user table.
      */
-    protected Date registrDate;
+    private Date registrDate;
 
     /**
      * Method 'User'
@@ -80,9 +80,9 @@ public class User implements Serializable {
     /**
      * Method 'getTypeU'
      * 
-     * @return String
+     * @return UType
      */
-    public String getTypeU() {
+    public UType getTypeU() {
 	return typeU;
     }
 
@@ -91,16 +91,16 @@ public class User implements Serializable {
      * 
      * @param typeU
      */
-    public void setTypeU(String typeU) {
+    public void setTypeU(UType typeU) {
 	this.typeU = typeU;
     }
 
     /**
      * Method 'getStatusU'
      * 
-     * @return String
+     * @return UStatus
      */
-    public String getStatusU() {
+    public UStatus getStatusU() {
 	return statusU;
     }
 
@@ -109,26 +109,26 @@ public class User implements Serializable {
      * 
      * @param statusU
      */
-    public void setStatusU(String statusU) {
+    public void setStatusU(UStatus statusU) {
 	this.statusU = statusU;
     }
 
     /**
-     * Method 'getProfileId'
+     * Method 'getProfile'
      * 
-     * @return Integer
+     * @return Profile
      */
-    public Integer getProfileId() {
-	return profileId;
+    public Profile getProfile() {
+	return profile;
     }
 
     /**
-     * Method 'setProfileId'
+     * Method 'setProfile'
      * 
-     * @param profileId
+     * @param profile
      */
-    public void setProfileId(Integer profileId) {
-	this.profileId = profileId;
+    public void setProfile(Profile profile) {
+	this.profile = profile;
     }
 
     /**
@@ -186,8 +186,8 @@ public class User implements Serializable {
 	    return false;
 	}
 
-	if (profileId == null ? _cast.profileId != profileId : !profileId
-		.equals(_cast.profileId)) {
+	if (profile == null ? _cast.profile != profile : !profile
+		.equals(_cast.profile)) {
 	    return false;
 	}
 
@@ -222,8 +222,8 @@ public class User implements Serializable {
 	    _hashCode = 29 * _hashCode + statusU.hashCode();
 	}
 
-	if (profileId != null) {
-	    _hashCode = 29 * _hashCode + profileId.hashCode();
+	if (profile != null) {
+	    _hashCode = 29 * _hashCode + profile.hashCode();
 	}
 
 	if (registrDate != null) {
@@ -252,9 +252,9 @@ public class User implements Serializable {
 	ret.append("ua.bionichill.socialnetwork.dto.User: ");
 	ret.append("email=" + email);
 	ret.append(", passw=" + passw);
-	ret.append(", typeU=" + typeU);
-	ret.append(", statusU=" + statusU);
-	ret.append(", profileId=" + profileId);
+	ret.append(", typeU=" + typeU.toString());
+	ret.append(", statusU=" + statusU.toString());
+	ret.append(", profile=" + profile.toString());
 	ret.append(", registrDate=" + registrDate);
 	return ret.toString();
     }

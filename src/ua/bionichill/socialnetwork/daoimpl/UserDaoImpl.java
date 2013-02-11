@@ -13,6 +13,9 @@ import org.apache.log4j.Logger;
 import ua.bionichill.socialnetwork.dao.UserDao;
 import ua.bionichill.socialnetwork.dto.User;
 import ua.bionichill.socialnetwork.dto.UserPk;
+import ua.bionichill.socialnetwork.exceptions.ProfileDaoException;
+import ua.bionichill.socialnetwork.exceptions.UStatusDaoException;
+import ua.bionichill.socialnetwork.exceptions.UTypeDaoException;
 import ua.bionichill.socialnetwork.exceptions.UserDaoException;
 
 public class UserDaoImpl extends AbstractDAO implements UserDao {
@@ -119,10 +122,11 @@ public class UserDaoImpl extends AbstractDAO implements UserDao {
 	    int index = 1;
 	    stmt.setString(index++, dto.getEmail());
 	    stmt.setString(index++, dto.getPassw());
-	    stmt.setString(index++, dto.getTypeU());
-	    stmt.setString(index++, dto.getStatusU());
-	    if (dto.getProfileId() != null) {
-		stmt.setInt(index++, dto.getProfileId().intValue());
+	    stmt.setString(index++, dto.getTypeU().getUType());
+	    stmt.setString(index++, dto.getStatusU().getUStatus());
+	    if (dto.getProfile().getIdProfile() != null) {
+		stmt.setInt(index++,
+			(dto.getProfile().getIdProfile()).intValue());
 	    } else {
 		stmt.setNull(index++, java.sql.Types.INTEGER);
 	    }
@@ -177,10 +181,11 @@ public class UserDaoImpl extends AbstractDAO implements UserDao {
 	    int index = 1;
 	    stmt.setString(index++, dto.getEmail());
 	    stmt.setString(index++, dto.getPassw());
-	    stmt.setString(index++, dto.getTypeU());
-	    stmt.setString(index++, dto.getStatusU());
-	    if (dto.getProfileId() != null) {
-		stmt.setInt(index++, dto.getProfileId().intValue());
+	    stmt.setString(index++, dto.getTypeU().getUType());
+	    stmt.setString(index++, dto.getStatusU().getUStatus());
+	    if (dto.getProfile().getIdProfile() != null) {
+		stmt.setInt(index++,
+			(dto.getProfile().getIdProfile()).intValue());
 	    } else {
 		stmt.setNull(index++, java.sql.Types.INTEGER);
 	    }
@@ -436,9 +441,27 @@ public class UserDaoImpl extends AbstractDAO implements UserDao {
     protected void populateDto(User dto, ResultSet rs) throws SQLException {
 	dto.setEmail(rs.getString(COLUMN_EMAIL));
 	dto.setPassw(rs.getString(COLUMN_PASSW));
-	dto.setTypeU(rs.getString(COLUMN_TYPE_U));
-	dto.setStatusU(rs.getString(COLUMN_STATUS_U));
-	dto.setProfileId(new Integer(rs.getInt(COLUMN_PROFILE_ID)));
+	try {
+	    dto.setTypeU(new UTypeDaoImpl().findByPrimaryKey(rs
+		    .getString(COLUMN_TYPE_U)));
+	} catch (UTypeDaoException e2) {
+	    // TODO Auto-generated catch block
+	    e2.printStackTrace();
+	}
+	try {
+	    dto.setStatusU(new UStatusDaoImpl().findByPrimaryKey(rs
+		    .getString(COLUMN_STATUS_U)));
+	} catch (UStatusDaoException e1) {
+	    // TODO Auto-generated catch block
+	    e1.printStackTrace();
+	}
+	try {
+	    dto.setProfile(new ProfileDaoImpl().findByPrimaryKey(new Integer(rs
+		    .getInt(COLUMN_PROFILE_ID))));
+	} catch (ProfileDaoException e) {
+	    // TODO Auto-generated catch block
+	    e.printStackTrace();
+	}
 	dto.setRegistrDate(rs.getTimestamp(COLUMN_REGISTR_DATE));
     }
 

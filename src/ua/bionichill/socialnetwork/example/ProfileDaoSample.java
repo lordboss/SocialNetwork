@@ -18,7 +18,7 @@ public class ProfileDaoSample {
 	// findWhereIdProfileEquals(null);
 	// findWhereFNameEquals("");
 	// findWhereSurNameEquals("");
-	// findWhereSexEquals("");
+	findWhereSexEquals("MALE");
 	// findWherePictEquals(null);
 	// findWhereIntrodEquals("");
 	// findWhereHobbyEquals("");

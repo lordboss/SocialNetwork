@@ -6,7 +6,7 @@ import java.io.Serializable;
  * This class represents the primary key of the profile table.
  */
 public class ProfilePk implements Serializable {
-    protected Integer idProfile;
+    private Integer idProfile;
 
     /**
      * Sets the value of idProfile

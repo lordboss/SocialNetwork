@@ -12,6 +12,7 @@ import org.apache.log4j.Logger;
 
 import ua.bionichill.socialnetwork.dao.ProfileDao;
 import ua.bionichill.socialnetwork.dto.Profile;
+import ua.bionichill.socialnetwork.dto.Profile.Sex;
 import ua.bionichill.socialnetwork.dto.ProfilePk;
 import ua.bionichill.socialnetwork.exceptions.ProfileDaoException;
 
@@ -444,7 +445,7 @@ public class ProfileDaoImpl extends AbstractDAO implements ProfileDao {
 	dto.setIdProfile(new Integer(rs.getInt(COLUMN_ID_PROFILE)));
 	dto.setFName(rs.getString(COLUMN_F_NAME));
 	dto.setSurName(rs.getString(COLUMN_SUR_NAME));
-	dto.setSex(rs.getString(COLUMN_SEX));
+	dto.setSex(Sex.valueOf(rs.getString(COLUMN_SEX)));
 	dto.setPict(super.getBlobColumn(rs, COLUMN_PICT));
 	dto.setIntrod(rs.getString(COLUMN_INTROD));
 	dto.setHobby(rs.getString(COLUMN_HOBBY));
