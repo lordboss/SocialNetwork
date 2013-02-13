@@ -290,6 +290,21 @@ public class ProfileDaoImpl extends AbstractDAO implements ProfileDao {
 	return ret.length == 0 ? null : ret[0];
     }
 
+    // /**
+    // * Returns all rows from the profile table that match the different
+    // criteria
+    // */
+    // public Profile findByDifferentKey(Integer idProfile, String fName,
+    // String surName, String sex, byte[] pict, String introd, String hobby)
+    // throws ProfileDaoException {
+    // Profile ret[] = findByDynamicSelect(
+    // SQL_SELECT
+    // +
+    // " WHERE fName = ? AND surName = ? AND pict = ? AND introd = ? AND hobby = ? ORDER BY idprofile",
+    // new Object[] { idProfile });
+    // return ret.length == 0 ? null : ret[0];
+    // }
+
     /**
      * Returns all rows from the profile table that match the criteria ''.
      */

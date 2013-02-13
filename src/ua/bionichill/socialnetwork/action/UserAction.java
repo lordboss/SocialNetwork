@@ -19,12 +19,12 @@ public interface UserAction {
     public User createUser(User user);
 
     /**
-     * Updates an information about user.
+     * Update an information about user.
      */
     public User updateUser(String email, User user);
 
     /**
-     * Deletes a user.
+     * Delete a user.
      */
     public void delete(String email);
 
