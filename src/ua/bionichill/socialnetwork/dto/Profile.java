@@ -5,7 +5,7 @@ import java.io.Serializable;
 public class Profile implements Serializable {
 
     public enum Sex {
-	MALE, FEMALE
+	MALE, FEMALE, NONE
     }
 
     /**

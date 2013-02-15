@@ -36,4 +36,9 @@ public interface ProfileAction {
      */
     public List<Profile> getProfileListByHobby(List<String> hobby);
 
+    /**
+     * Create profile.
+     */
+    public Profile createProfile();
+
 }

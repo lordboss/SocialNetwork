@@ -15,7 +15,7 @@ public class ProfileDaoSample {
 	// Uncomment one of the lines below to test the generated code
 
 	findAll();
-	// findWhereIdProfileEquals(null);
+	findWhereIdProfileEquals(null);
 	// findWhereFNameEquals("");
 	// findWhereSurNameEquals("");
 	findWhereSexEquals("MALE");

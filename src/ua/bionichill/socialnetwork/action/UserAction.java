@@ -16,7 +16,7 @@ public interface UserAction {
     /**
      * Create a new user (registration).
      */
-    public User createUser(User user);
+    public void createUser(User user);
 
     /**
      * Update an information about user.
