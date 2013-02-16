@@ -1,0 +1,155 @@
+08:22:14,020 ERROR UserDaoImpl:insert:149 - Exception: Duplicate entry 'semen@semen.com' for key 'PRIMARY'
+com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Duplicate entry 'semen@semen.com' for key 'PRIMARY'
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:525)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:411)
+	at com.mysql.jdbc.Util.getInstance(Util.java:386)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:1040)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:4096)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:4028)
+	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:2490)
+	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:2651)
+	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2734)
+	at com.mysql.jdbc.PreparedStatement.executeInternal(PreparedStatement.java:2155)
+	at com.mysql.jdbc.PreparedStatement.executeUpdate(PreparedStatement.java:2458)
+	at com.mysql.jdbc.PreparedStatement.executeUpdate(PreparedStatement.java:2375)
+	at com.mysql.jdbc.PreparedStatement.executeUpdate(PreparedStatement.java:2359)
+	at ua.bionichill.socialnetwork.daoimpl.UserDaoImpl.insert(UserDaoImpl.java:140)
+	at ua.bionichill.socialnetwork.actionimpl.UserActionImpl.createUser(UserActionImpl.java:64)
+	at ua.bionichill.socialnetwork.actionimpl.UserActionImpl.main(UserActionImpl.java:40)
+08:22:14,025 ERROR UserActionImpl:createUser:67 - Error occurred during creation of a new user: 
+ua.bionichill.socialnetwork.exceptions.UserDaoException: Exception: Duplicate entry 'semen@semen.com' for key 'PRIMARY'
+	at ua.bionichill.socialnetwork.daoimpl.UserDaoImpl.insert(UserDaoImpl.java:150)
+	at ua.bionichill.socialnetwork.actionimpl.UserActionImpl.createUser(UserActionImpl.java:64)
+	at ua.bionichill.socialnetwork.actionimpl.UserActionImpl.main(UserActionImpl.java:40)
+Caused by: com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Duplicate entry 'semen@semen.com' for key 'PRIMARY'
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:525)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:411)
+	at com.mysql.jdbc.Util.getInstance(Util.java:386)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:1040)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:4096)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:4028)
+	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:2490)
+	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:2651)
+	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2734)
+	at com.mysql.jdbc.PreparedStatement.executeInternal(PreparedStatement.java:2155)
+	at com.mysql.jdbc.PreparedStatement.executeUpdate(PreparedStatement.java:2458)
+	at com.mysql.jdbc.PreparedStatement.executeUpdate(PreparedStatement.java:2375)
+	at com.mysql.jdbc.PreparedStatement.executeUpdate(PreparedStatement.java:2359)
+	at ua.bionichill.socialnetwork.daoimpl.UserDaoImpl.insert(UserDaoImpl.java:140)
+	... 2 more
+08:31:46,069 ERROR UserDaoImpl:insert:149 - Exception: null
+java.lang.NullPointerException
+	at ua.bionichill.socialnetwork.daoimpl.UserDaoImpl.insert(UserDaoImpl.java:127)
+	at ua.bionichill.socialnetwork.actionimpl.UserActionImpl.createUser(UserActionImpl.java:64)
+	at ua.bionichill.socialnetwork.actionimpl.UserActionImpl.main(UserActionImpl.java:40)
+08:31:46,073 ERROR UserActionImpl:createUser:67 - Error occurred during creation of a new user: 
+ua.bionichill.socialnetwork.exceptions.UserDaoException: Exception: null
+	at ua.bionichill.socialnetwork.daoimpl.UserDaoImpl.insert(UserDaoImpl.java:150)
+	at ua.bionichill.socialnetwork.actionimpl.UserActionImpl.createUser(UserActionImpl.java:64)
+	at ua.bionichill.socialnetwork.actionimpl.UserActionImpl.main(UserActionImpl.java:40)
+Caused by: java.lang.NullPointerException
+	at ua.bionichill.socialnetwork.daoimpl.UserDaoImpl.insert(UserDaoImpl.java:127)
+	... 2 more
+08:33:32,856 ERROR UserDaoImpl:insert:149 - Exception: null
+java.lang.NullPointerException
+	at ua.bionichill.socialnetwork.daoimpl.UserDaoImpl.insert(UserDaoImpl.java:127)
+	at ua.bionichill.socialnetwork.actionimpl.UserActionImpl.createUser(UserActionImpl.java:64)
+	at ua.bionichill.socialnetwork.actionimpl.UserActionImpl.main(UserActionImpl.java:40)
+08:33:32,860 ERROR UserActionImpl:createUser:67 - Error occurred during creation of a new user: 
+ua.bionichill.socialnetwork.exceptions.UserDaoException: Exception: null
+	at ua.bionichill.socialnetwork.daoimpl.UserDaoImpl.insert(UserDaoImpl.java:150)
+	at ua.bionichill.socialnetwork.actionimpl.UserActionImpl.createUser(UserActionImpl.java:64)
+	at ua.bionichill.socialnetwork.actionimpl.UserActionImpl.main(UserActionImpl.java:40)
+Caused by: java.lang.NullPointerException
+	at ua.bionichill.socialnetwork.daoimpl.UserDaoImpl.insert(UserDaoImpl.java:127)
+	... 2 more
+09:00:07,974 ERROR UserDaoImpl:insert:149 - Exception: Duplicate entry 'sem@sem.com' for key 'PRIMARY'
+com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Duplicate entry 'sem@sem.com' for key 'PRIMARY'
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:525)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:411)
+	at com.mysql.jdbc.Util.getInstance(Util.java:386)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:1040)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:4096)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:4028)
+	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:2490)
+	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:2651)
+	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2734)
+	at com.mysql.jdbc.PreparedStatement.executeInternal(PreparedStatement.java:2155)
+	at com.mysql.jdbc.PreparedStatement.executeUpdate(PreparedStatement.java:2458)
+	at com.mysql.jdbc.PreparedStatement.executeUpdate(PreparedStatement.java:2375)
+	at com.mysql.jdbc.PreparedStatement.executeUpdate(PreparedStatement.java:2359)
+	at ua.bionichill.socialnetwork.daoimpl.UserDaoImpl.insert(UserDaoImpl.java:140)
+	at ua.bionichill.socialnetwork.actionimpl.UserActionImpl.createUser(UserActionImpl.java:64)
+	at ua.bionichill.socialnetwork.actionimpl.UserActionImpl.main(UserActionImpl.java:40)
+09:00:07,980 ERROR UserActionImpl:createUser:67 - Error occurred during creation of a new user: 
+ua.bionichill.socialnetwork.exceptions.UserDaoException: Exception: Duplicate entry 'sem@sem.com' for key 'PRIMARY'
+	at ua.bionichill.socialnetwork.daoimpl.UserDaoImpl.insert(UserDaoImpl.java:150)
+	at ua.bionichill.socialnetwork.actionimpl.UserActionImpl.createUser(UserActionImpl.java:64)
+	at ua.bionichill.socialnetwork.actionimpl.UserActionImpl.main(UserActionImpl.java:40)
+Caused by: com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Duplicate entry 'sem@sem.com' for key 'PRIMARY'
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:525)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:411)
+	at com.mysql.jdbc.Util.getInstance(Util.java:386)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:1040)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:4096)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:4028)
+	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:2490)
+	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:2651)
+	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2734)
+	at com.mysql.jdbc.PreparedStatement.executeInternal(PreparedStatement.java:2155)
+	at com.mysql.jdbc.PreparedStatement.executeUpdate(PreparedStatement.java:2458)
+	at com.mysql.jdbc.PreparedStatement.executeUpdate(PreparedStatement.java:2375)
+	at com.mysql.jdbc.PreparedStatement.executeUpdate(PreparedStatement.java:2359)
+	at ua.bionichill.socialnetwork.daoimpl.UserDaoImpl.insert(UserDaoImpl.java:140)
+	... 2 more
+10:24:16,437 ERROR UserDaoImpl:update:204 - Exception: null
+java.lang.NullPointerException
+	at ua.bionichill.socialnetwork.daoimpl.UserDaoImpl.update(UserDaoImpl.java:186)
+	at ua.bionichill.socialnetwork.actionimpl.UserActionImpl.updateUser(UserActionImpl.java:78)
+	at ua.bionichill.socialnetwork.actionimpl.UserActionImpl.main(UserActionImpl.java:42)
+10:24:16,441 ERROR UserActionImpl:updateUser:81 - Error occurred during update a user: 
+ua.bionichill.socialnetwork.exceptions.UserDaoException: Exception: null
+	at ua.bionichill.socialnetwork.daoimpl.UserDaoImpl.update(UserDaoImpl.java:205)
+	at ua.bionichill.socialnetwork.actionimpl.UserActionImpl.updateUser(UserActionImpl.java:78)
+	at ua.bionichill.socialnetwork.actionimpl.UserActionImpl.main(UserActionImpl.java:42)
+Caused by: java.lang.NullPointerException
+	at ua.bionichill.socialnetwork.daoimpl.UserDaoImpl.update(UserDaoImpl.java:186)
+	... 2 more
+10:27:36,609 ERROR UserDaoImpl:update:204 - Exception: null
+java.lang.NullPointerException
+	at ua.bionichill.socialnetwork.daoimpl.UserDaoImpl.update(UserDaoImpl.java:186)
+	at ua.bionichill.socialnetwork.actionimpl.UserActionImpl.updateUser(UserActionImpl.java:78)
+	at ua.bionichill.socialnetwork.actionimpl.UserActionImpl.main(UserActionImpl.java:42)
+10:27:36,614 ERROR UserActionImpl:updateUser:81 - Error occurred during update a user: 
+ua.bionichill.socialnetwork.exceptions.UserDaoException: Exception: null
+	at ua.bionichill.socialnetwork.daoimpl.UserDaoImpl.update(UserDaoImpl.java:205)
+	at ua.bionichill.socialnetwork.actionimpl.UserActionImpl.updateUser(UserActionImpl.java:78)
+	at ua.bionichill.socialnetwork.actionimpl.UserActionImpl.main(UserActionImpl.java:42)
+Caused by: java.lang.NullPointerException
+	at ua.bionichill.socialnetwork.daoimpl.UserDaoImpl.update(UserDaoImpl.java:186)
+	... 2 more
+10:28:29,666 ERROR UserDaoImpl:update:204 - Exception: null
+java.lang.NullPointerException
+	at ua.bionichill.socialnetwork.daoimpl.UserDaoImpl.update(UserDaoImpl.java:186)
+	at ua.bionichill.socialnetwork.actionimpl.UserActionImpl.updateUser(UserActionImpl.java:78)
+	at ua.bionichill.socialnetwork.actionimpl.UserActionImpl.main(UserActionImpl.java:42)
+10:28:29,670 ERROR UserActionImpl:updateUser:81 - Error occurred during update a user: 
+ua.bionichill.socialnetwork.exceptions.UserDaoException: Exception: null
+	at ua.bionichill.socialnetwork.daoimpl.UserDaoImpl.update(UserDaoImpl.java:205)
+	at ua.bionichill.socialnetwork.actionimpl.UserActionImpl.updateUser(UserActionImpl.java:78)
+	at ua.bionichill.socialnetwork.actionimpl.UserActionImpl.main(UserActionImpl.java:42)
+Caused by: java.lang.NullPointerException
+	at ua.bionichill.socialnetwork.daoimpl.UserDaoImpl.update(UserDaoImpl.java:186)
+	... 2 more
