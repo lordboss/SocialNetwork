@@ -1,5 +1,6 @@
 package ua.bionichill.socialnetwork.actionimpl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -7,8 +8,6 @@ import org.apache.log4j.Logger;
 import ua.bionichill.socialnetwork.action.UserAction;
 import ua.bionichill.socialnetwork.dao.UserDao;
 import ua.bionichill.socialnetwork.daoimpl.UserDaoImpl;
-import ua.bionichill.socialnetwork.dto.UStatus;
-import ua.bionichill.socialnetwork.dto.UType;
 import ua.bionichill.socialnetwork.dto.User;
 import ua.bionichill.socialnetwork.dto.UserPk;
 import ua.bionichill.socialnetwork.exceptions.UserDaoException;
@@ -27,19 +26,25 @@ public class UserActionImpl implements UserAction {
     public static void main(String[] arg) throws Exception {
 
 	// Uncomment one of the lines below to test the generated code
-	User u = new User();
-	u.setEmail("sem@sem.com");
-	u.setPassw("sem");
-	u.setProfile(null);
-	UType ut = new UType();
-	ut.setUType("REGISTERED");
-	u.setTypeU(ut);
-	UStatus us = new UStatus();
-	us.setUStatus("ACTIVE");
-	u.setStatusU(us);
-	u.setRegistrDate(null);
-	new UserActionImpl().createUser(u);
+	// User u = new User();
+	// u.setEmail("sem@sem.com");
+	// u.setPassw("sem");
+	// u.setProfile(null);
+	// UType ut = new UType();
+	// ut.setUType("REGISTERED");
+	// u.setTypeU(ut);
+	// UStatus us = new UStatus();
+	// us.setUStatus("BLOCKED");
+	// u.setStatusU(us);
+	// u.setRegistrDate(null);
+	// u = new UserActionImpl().getUserByPK("sem@sem.com");
+	// u.setStatusU(us);
+	// new UserActionImpl().createUser(u);
+	// new UserActionImpl().updateUser(u);
 	// UserActionImpl uai = new UserActionImpl();
+	for (User dto : new UserActionImpl().getUserList()) {
+	    display(dto);
+	}
 
 	// findAll();
 	// findByProfile(null);
@@ -101,32 +106,23 @@ public class UserActionImpl implements UserAction {
 
     @Override
     public List<User> getUserList() {
-	// TODO Auto-generated method stub
+	List<User> uList = new ArrayList<>();
+	try {
+	    UserDao _dao = getUserDao();
+	    User _result[] = _dao.findAll();
+	    for (int i = 0; i < _result.length; i++) {
+		uList.add(_result[i]);
+	    }
+	    return uList;
+	} catch (UserDaoException e) {
+	    logger.error("Error occurred during get all users: ", e);
+	}
 	return null;
     }
 
     @Override
     public void blockUser(String email) {
 	// TODO Auto-generated method stub
-
-    }
-
-    /**
-     * Method 'findByProfile'
-     * 
-     * @param profileId
-     */
-    public static void findByProfile(Integer profileId) {
-	try {
-	    UserDao _dao = getUserDao();
-	    User _result[] = _dao.findByProfile(profileId);
-	    for (int i = 0; i < _result.length; i++) {
-		display(_result[i]);
-	    }
-
-	} catch (Exception _e) {
-	    _e.printStackTrace();
-	}
 
     }
 
