@@ -10,6 +10,7 @@ import ua.bionichill.socialnetwork.daoimpl.UserDaoImpl;
 import ua.bionichill.socialnetwork.dto.UStatus;
 import ua.bionichill.socialnetwork.dto.UType;
 import ua.bionichill.socialnetwork.dto.User;
+import ua.bionichill.socialnetwork.dto.UserPk;
 import ua.bionichill.socialnetwork.exceptions.UserDaoException;
 import ua.bionichill.socialnetwork.factory.UserDaoFactory;
 
@@ -71,9 +72,13 @@ public class UserActionImpl implements UserAction {
     }
 
     @Override
-    public User updateUser(String email, User user) {
-	// TODO Auto-generated method stub
-	return null;
+    public void updateUser(User user) {
+	try {
+	    new UserDaoImpl().update(new UserPk(user.getEmail()), user);
+	    logger.info("Update info about " + user.getEmail());
+	} catch (UserDaoException e) {
+	    logger.error("Error occurred during update a user: ", e);
+	}
     }
 
     @Override

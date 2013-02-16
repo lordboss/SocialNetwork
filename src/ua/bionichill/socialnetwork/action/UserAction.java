@@ -21,7 +21,7 @@ public interface UserAction {
     /**
      * Update an information about user.
      */
-    public User updateUser(String email, User user);
+    public void updateUser(User user);
 
     /**
      * Delete a user.
