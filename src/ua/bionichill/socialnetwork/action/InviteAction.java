@@ -4,7 +4,12 @@ import java.util.List;
 
 import ua.bionichill.socialnetwork.dto.Invite;
 
-interface InviteAction {
+public interface InviteAction {
+
+    /**
+     * Create invite
+     */
+    public void createInvite(Invite invite);
 
     /**
      * Delete invite.
@@ -17,11 +22,6 @@ interface InviteAction {
     public void update(Integer idInvite, Invite invite);
 
     /**
-     * Create invite
-     */
-    public Invite createInvite(Integer idInvite, Invite invite);
-
-    /**
      * Get all invites
      */
     public List<Invite> getAllInvite(List<Integer> idInvite);
@@ -29,5 +29,5 @@ interface InviteAction {
     /**
      * Get invite
      */
-    public Invite getInvite(Integer idInvite);
+    public Invite getInviteByPK(Integer idInvite);
 }
