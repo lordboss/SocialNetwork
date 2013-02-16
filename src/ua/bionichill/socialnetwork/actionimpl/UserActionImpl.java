@@ -27,8 +27,8 @@ public class UserActionImpl implements UserAction {
 
 	// Uncomment one of the lines below to test the generated code
 	User u = new User();
-	u.setEmail("semen@semen.com");
-	u.setPassw("semen");
+	u.setEmail("sem@sem.com");
+	u.setPassw("sem");
 	u.setProfile(null);
 	UType ut = new UType();
 	ut.setUType("REGISTERED");
@@ -54,19 +54,20 @@ public class UserActionImpl implements UserAction {
 
     @Override
     public void createUser(User user) {
-	// TODO Implement of verifying that that user with the same name is
-	// absent in db
 	ProfileActionImpl profile = new ProfileActionImpl();
 	User dto = user;
-	dto.setProfile(profile.createProfile());
-	try {
-	    new UserDaoImpl().insert(dto);
-	    logger.info("User " + dto.getEmail() + " created.");
-	} catch (UserDaoException e) {
-	    logger.error("Error occurred during creation of a new user: ", e);
-	    e.printStackTrace();
+	if (!user.equals(new UserActionImpl().getUserByPK(user.getEmail()))) {
+	    dto.setProfile(profile.createProfile());
+	    try {
+		new UserDaoImpl().insert(dto);
+		logger.info("User " + dto.getEmail() + " created.");
+	    } catch (UserDaoException e) {
+		logger.error("Error occurred during creation of a new user: ",
+			e);
+		e.printStackTrace();
+	    }
 	}
-	// TODO Auto-generated method stub
+	// TODO return error message if user already prsent in db
     }
 
     @Override
@@ -83,7 +84,13 @@ public class UserActionImpl implements UserAction {
 
     @Override
     public User getUserByPK(String email) {
-	// TODO Auto-generated method stub
+	try {
+	    UserDao _dao = getUserDao();
+	    User _result = _dao.findByPrimaryKey(email);
+	    return _result;
+	} catch (Exception _e) {
+	    _e.printStackTrace();
+	}
 	return null;
     }
 
