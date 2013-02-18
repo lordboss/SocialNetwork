@@ -6,9 +6,8 @@ import org.apache.log4j.Logger;
 
 import ua.bionichill.socialnetwork.action.InviteAction;
 import ua.bionichill.socialnetwork.dao.InviteDao;
-import ua.bionichill.socialnetwork.daoimpl.UserDaoImpl;
 import ua.bionichill.socialnetwork.dto.Invite;
-import ua.bionichill.socialnetwork.exceptions.UserDaoException;
+import ua.bionichill.socialnetwork.exceptions.InviteDaoException;
 import ua.bionichill.socialnetwork.factory.InviteDaoFactory;
 
 public class InviteActionImpl implements InviteAction {
@@ -18,20 +17,14 @@ public class InviteActionImpl implements InviteAction {
 
     @Override
     public void createInvite(Invite invite) {
-	Invite dto = invite;
-	if (!invite.equals(new UserActionImpl().getUserByPK(user.getEmail()))) {
-	    dto.setProfile(profile.createProfile());
-	    try {
-		new UserDaoImpl().insert(dto);
-		logger.info("User " + dto.getEmail() + " created.");
-	    } catch (UserDaoException e) {
-		logger.error("Error occurred during creation of a new user: ",
-			e);
-		e.printStackTrace();
-	    }
+	try {
+	    InviteDao _dao = getInviteDao();
+	    _dao.insert(invite);
+	    logger.info("User " + invite.getInviter()
+		    + " want to friendship with user " + invite.getInvitee());
+	} catch (InviteDaoException e) {
+	    logger.error("Error occurred during creation of a new invite: ", e);
 	}
-	// TODO return error message if user already prsent in db
-
     }
 
     @Override
@@ -52,6 +45,11 @@ public class InviteActionImpl implements InviteAction {
 	return null;
     }
 
+    /**
+     * Method 'getInviteByPK'
+     * 
+     * @param idInvite
+     */
     @Override
     public Invite getInviteByPK(Integer idInvite) {
 	try {

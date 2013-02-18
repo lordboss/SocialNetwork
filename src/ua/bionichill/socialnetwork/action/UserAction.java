@@ -42,4 +42,6 @@ public interface UserAction {
      * Block a user.
      */
     public void blockUser(String email);
+
+    public void askFriendsh(User inviter, User invitee);
 }
