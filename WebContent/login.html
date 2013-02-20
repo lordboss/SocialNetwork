@@ -1,95 +1,8 @@
-<?php
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['form_name'] == 'loginform')
-{
-   $success_page = '';
-   $error_page = basename(__FILE__);
-   $database = './usersdb.php';
-   $crypt_pass = md5($_POST['password']);
-   $found = false;
-   $fullname = '';
-
-   if(filesize($database) > 0)
-   {
-      $items = file($database, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
-      foreach($items as $line)
-      {
-         list($username, $password, $email, $name, $active) = explode('|', trim($line));
-         if ($username == $_POST['username'] && $active != "0" && $password == $crypt_pass)
-         {
-            $found = true;
-            $fullname = $name;
-         }
-      }
-   }
-   if($found == false)
-   {
-      header('Location: '.$error_page);
-      exit;
-   }
-   else
-   {
-      if (session_id() == "")
-      {
-         session_start();
-      }
-      $_SESSION['username'] = $_POST['username'];
-      $_SESSION['fullname'] = $fullname;
-      header('Location: '.$success_page);
-      exit;
-   }
-}
-$username = isset($_COOKIE['username']) ? $_COOKIE['username'] : '';
-$password = isset($_COOKIE['password']) ? $_COOKIE['password'] : '';
-?>
-<?php
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['form_name'] == 'loginform')
-{
-   $success_page = '';
-   $error_page = basename(__FILE__);
-   $database = './usersdb.php';
-   $crypt_pass = md5($_POST['password']);
-   $found = false;
-   $fullname = '';
-
-   if(filesize($database) > 0)
-   {
-      $items = file($database, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
-      foreach($items as $line)
-      {
-         list($username, $password, $email, $name, $active) = explode('|', trim($line));
-         if ($username == $_POST['username'] && $active != "0" && $password == $crypt_pass)
-         {
-            $found = true;
-            $fullname = $name;
-         }
-      }
-   }
-   if($found == false)
-   {
-      header('Location: '.$error_page);
-      exit;
-   }
-   else
-   {
-      if (session_id() == "")
-      {
-         session_start();
-      }
-      $_SESSION['username'] = $_POST['username'];
-      $_SESSION['fullname'] = $fullname;
-      header('Location: '.$success_page);
-      exit;
-   }
-}
-$username = isset($_COOKIE['username']) ? $_COOKIE['username'] : '';
-$password = isset($_COOKIE['password']) ? $_COOKIE['password'] : '';
-?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Untitled Page</title>
-<meta name="generator" content="WYSIWYG Web Builder - http://www.wysiwygwebbuilder.com">
+<title>Login to SocialNetwork</title>
 <style type="text/css">
 body
 {
@@ -299,7 +212,7 @@ a:hover
 <div id="wb_Shape7" style="position:absolute;left:10px;top:11px;width:194px;height:291px;z-index:11;">
 <img src="images/img0030.gif" id="Shape7" alt="" style="border-width:0;width:194px;height:291px;"></div>
 <div id="wb_Login1" style="position:absolute;left:424px;top:81px;width:168px;height:136px;text-align:right;z-index:12;">
-<form name="loginform" method="post" action="<?php echo basename(__FILE__); ?>" id="loginform">
+<form name="loginform" method="post" action="./main" id="loginform">
 <input type="hidden" name="form_name" value="loginform">
 <table class="loginform_table" style="width:168px;height:136px;">
 <tr>
@@ -307,11 +220,11 @@ a:hover
 </tr>
 <tr>
    <td style="height:20px;width:50px">e-mail:</td>
-   <td style="text-align:left"><input class="loginform_text" name="username" type="text" id="username" value="<?php echo $username; ?>" style="width:100px;height:18px;"></td>
+   <td style="text-align:left"><input class="loginform_text" name="username" type="text" id="username" value="" style="width:100px;height:18px;"></td>
 </tr>
 <tr>
    <td style="height:20px">Password:</td>
-   <td style="text-align:left"><input class="loginform_text" name="password" type="password" id="password" value="<?php echo $password; ?>" style="width:100px;height:18px;"></td>
+   <td style="text-align:left"><input class="loginform_text" name="password" type="password" id="password" value="" style="width:100px;height:18px;"></td>
 </tr>
 <tr>
    <td>&nbsp;</td><td style="text-align:left;vertical-align:bottom"><input class="loginform_button" type="submit" name="login" value="Log In" id="login" style="width:70px;height:20px;"></td>
